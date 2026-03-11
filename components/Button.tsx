@@ -14,7 +14,7 @@ export default function Button({
   icon,
 }: ButtonProps) {
   const baseStyles =
-    "px-4 py-3 text-xl font-semibold rounded-lg transition-opacity hover:opacity-80";
+    "px-4 py-3 text-base md:text-xl font-semibold rounded-lg transition-opacity hover:opacity-80";
   const variantStyles = {
     primary: "bg-white text-[#050505]",
     secondary: "bg-transparent text-white",
