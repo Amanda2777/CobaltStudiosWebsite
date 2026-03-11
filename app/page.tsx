@@ -23,7 +23,7 @@ export default function Home() {
       projectName: "PROJECT NAME",
       imageSrc: "/images/case-studies/project-1.png",
       imageAlt: "Project 1",
-      videoSrc: "/videos/1.mp4",
+      videoSrc: "/videos/KnQ new 5.mp4",
     },
     {
       number: 2,
@@ -39,7 +39,7 @@ export default function Home() {
       projectName: "PROJECT NAME",
       imageSrc: "/images/case-studies/project-3.png",
       imageAlt: "Project 3",
-      videoSrc: "/videos/KnQ new 5.mp4",
+      videoSrc: "/videos/1.mp4",
     },
     {
       number: 4,
@@ -51,33 +51,32 @@ export default function Home() {
     },
   ];
 
-  // Synchronize videos when hoveredCard changes
+  // Auto-play pizza video (card 3) on mount and synchronize videos when hoveredCard changes
   useEffect(() => {
-    if (hoveredCard !== null) {
-      const heroVideo = heroVideoRefs.current[hoveredCard];
-      const bgVideo = bgVideoRefs.current[hoveredCard];
+    const cardToShow = hoveredCard ?? 3; // Default to card 3 (pizza) when no hover
+    const heroVideo = heroVideoRefs.current[cardToShow];
+    const bgVideo = bgVideoRefs.current[cardToShow];
 
-      if (heroVideo && bgVideo) {
-        // Reset both to start and sync
-        heroVideo.currentTime = 0;
-        bgVideo.currentTime = 0;
+    if (heroVideo && bgVideo) {
+      // Reset both to start and sync
+      heroVideo.currentTime = 0;
+      bgVideo.currentTime = 0;
 
-        // Play both together
-        Promise.all([
-          heroVideo.play().catch(() => {}),
-          bgVideo.play().catch(() => {}),
-        ]);
+      // Play both together
+      Promise.all([
+        heroVideo.play().catch(() => {}),
+        bgVideo.play().catch(() => {}),
+      ]);
 
-        // Keep them synced during playback
-        const syncVideos = () => {
-          if (Math.abs(heroVideo.currentTime - bgVideo.currentTime) > 0.1) {
-            bgVideo.currentTime = heroVideo.currentTime;
-          }
-        };
+      // Keep them synced during playback
+      const syncVideos = () => {
+        if (Math.abs(heroVideo.currentTime - bgVideo.currentTime) > 0.1) {
+          bgVideo.currentTime = heroVideo.currentTime;
+        }
+      };
 
-        heroVideo.addEventListener("timeupdate", syncVideos);
-        return () => heroVideo.removeEventListener("timeupdate", syncVideos);
-      }
+      heroVideo.addEventListener("timeupdate", syncVideos);
+      return () => heroVideo.removeEventListener("timeupdate", syncVideos);
     }
   }, [hoveredCard]);
 
@@ -97,11 +96,16 @@ export default function Home() {
             <div
               key={`bg-${study.number}`}
               className={`absolute inset-0 transition-opacity duration-500 ${
-                hoveredCard === study.number ? "opacity-20" : "opacity-0"
+                (hoveredCard === null && study.number === 3) ||
+                hoveredCard === study.number
+                  ? "opacity-20"
+                  : "opacity-0"
               }`}
             >
               <video
-                ref={(el) => { bgVideoRefs.current[study.number] = el; }}
+                ref={(el) => {
+                  bgVideoRefs.current[study.number] = el;
+                }}
                 src={study.videoSrc}
                 loop
                 muted
@@ -118,32 +122,21 @@ export default function Home() {
 
         {/* Hero Video/Image - Multiple with opacity transitions */}
         <div className="w-[200px] h-[311px] md:w-[298px] md:h-[463px] relative overflow-hidden z-10">
-          {/* Default hero image */}
-          <div
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              hoveredCard === null ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <Image
-              src="/images/hero/hero-main.jpg"
-              alt="Hero image"
-              fill
-              sizes="(max-width: 768px) 200px, 298px"
-              className="object-cover"
-              priority
-            />
-          </div>
-
           {/* Case study videos */}
           {caseStudies.map((study) => (
             <div
               key={`hero-${study.number}`}
               className={`absolute inset-0 transition-opacity duration-500 ${
-                hoveredCard === study.number ? "opacity-100" : "opacity-0"
+                (hoveredCard === null && study.number === 3) ||
+                hoveredCard === study.number
+                  ? "opacity-100"
+                  : "opacity-0"
               }`}
             >
               <video
-                ref={(el) => { heroVideoRefs.current[study.number] = el; }}
+                ref={(el) => {
+                  heroVideoRefs.current[study.number] = el;
+                }}
                 src={study.videoSrc}
                 loop
                 muted
