@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -6,20 +9,36 @@ interface NavigationProps {
 }
 
 export default function Navigation({ transparent = false }: NavigationProps) {
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 0);
+    };
+
+    handleScroll(); // Check initial state
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 ${
-        transparent ? "bg-transparent" : "bg-[#050505]/80 backdrop-blur-sm"
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        transparent
+          ? "bg-transparent"
+          : hasScrolled
+            ? "bg-[#050505]/80 backdrop-blur-sm"
+            : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 md:px-8 py-4 md:py-6 flex justify-between items-center">
+      <div className="mx-auto px-4 md:px-8 py-4 md:py-6 flex justify-between items-center w-full max-w-[1142px]">
         <Link href="/" className="flex items-center">
           <Image
             src="/logo.svg"
             alt="COBALT"
-            width={100}
-            height={12}
-            className="h-3 w-auto"
+            width={150}
+            height={18}
+            className="h-4 w-auto"
           />
         </Link>
 

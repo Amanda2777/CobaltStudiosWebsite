@@ -31,9 +31,10 @@ export default function CaseStudyCard({
     >
       {/* Overlay for blacking out non-hovered cards */}
       <div
-        className={`absolute inset-0 bg-black z-10 transition-opacity duration-500 pointer-events-none ${
-          isDimmed ? "opacity-90" : "opacity-0"
+        className={`absolute inset-0 z-30 transition-opacity duration-500 pointer-events-none ${
+          isDimmed ? "opacity-100" : "opacity-0"
         }`}
+        style={{ backgroundColor: "rgb(5, 5, 5)" }}
       />
 
       {/* Overlay for dimming the hovered card */}
