@@ -1,0 +1,32 @@
+import Link from "next/link";
+
+interface ButtonProps {
+  href: string;
+  variant?: "primary" | "secondary";
+  children: React.ReactNode;
+  icon?: React.ReactNode;
+}
+
+export default function Button({
+  href,
+  variant = "secondary",
+  children,
+  icon,
+}: ButtonProps) {
+  const baseStyles =
+    "px-4 py-3 text-xl font-semibold rounded-lg transition-opacity hover:opacity-80";
+  const variantStyles = {
+    primary: "bg-white text-[#050505]",
+    secondary: "bg-transparent text-white",
+  };
+
+  return (
+    <Link
+      href={href}
+      className={`${baseStyles} ${variantStyles[variant]} ${icon ? "flex items-center gap-2.5" : ""}`}
+    >
+      {children}
+      {icon}
+    </Link>
+  );
+}
