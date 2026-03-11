@@ -41,7 +41,9 @@ export default function FAQItem({
             : "max-h-0 opacity-0 mb-0"
         }`}
       >
-        {answer && <p className="text-lg md:text-3xl text-white/50">{answer}</p>}
+        {answer && (
+          <p className="text-lg md:text-3xl text-white/50">{answer}</p>
+        )}
       </div>
     </div>
   );

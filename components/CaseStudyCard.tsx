@@ -6,6 +6,10 @@ interface CaseStudyCardProps {
   projectName: string;
   imageSrc: string;
   imageAlt: string;
+  isHovered?: boolean;
+  isDimmed?: boolean;
+  onHoverStart?: () => void;
+  onHoverEnd?: () => void;
 }
 
 export default function CaseStudyCard({
@@ -14,10 +18,36 @@ export default function CaseStudyCard({
   projectName,
   imageSrc,
   imageAlt,
+  isHovered = false,
+  isDimmed = false,
+  onHoverStart,
+  onHoverEnd,
 }: CaseStudyCardProps) {
   return (
-    <div className="flex flex-col items-start flex-1">
-      <div className="flex flex-row justify-between items-start px-2 md:px-5 pb-2 w-full mb-2">
+    <div
+      className="flex flex-col items-start flex-1 relative cursor-pointer"
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
+    >
+      {/* Overlay for blacking out non-hovered cards */}
+      <div
+        className={`absolute inset-0 bg-black z-10 transition-opacity duration-500 pointer-events-none ${
+          isDimmed ? "opacity-90" : "opacity-0"
+        }`}
+      />
+
+      {/* Overlay for dimming the hovered card */}
+      <div
+        className={`absolute inset-0 bg-black z-10 transition-opacity duration-500 pointer-events-none ${
+          isHovered ? "opacity-40" : "opacity-0"
+        }`}
+      />
+
+      <div
+        className={`flex flex-row justify-between items-start px-2 md:px-5 pb-2 w-full mb-2 relative z-20 transition-opacity duration-500 ${
+          isDimmed ? "opacity-10" : "opacity-100"
+        }`}
+      >
         <span className="text-xs md:text-sm font-medium">{number}</span>
         <div className="flex flex-col justify-center items-end">
           <span className="text-xs md:text-sm font-semibold">{clientName}</span>

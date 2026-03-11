@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useRef, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,21 +10,120 @@ import FAQItem from "@/components/FAQItem";
 import Button from "@/components/Button";
 
 export default function Home() {
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  // Refs for hero and background videos
+  const heroVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
+  const bgVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
+
+  const caseStudies = [
+    {
+      number: 1,
+      clientName: "CLIENT NAME",
+      projectName: "PROJECT NAME",
+      imageSrc: "/images/case-studies/project-1.png",
+      imageAlt: "Project 1",
+      videoSrc: "/videos/1.mp4",
+    },
+    {
+      number: 2,
+      clientName: "CLIENT NAME",
+      projectName: "PROJECT NAME",
+      imageSrc: "/images/case-studies/project-2.png",
+      imageAlt: "Project 2",
+      videoSrc: "/videos/Cow-3.mp4",
+    },
+    {
+      number: 3,
+      clientName: "CLIENT NAME",
+      projectName: "PROJECT NAME",
+      imageSrc: "/images/case-studies/project-3.png",
+      imageAlt: "Project 3",
+      videoSrc: "/videos/KnQ new 5.mp4",
+    },
+    {
+      number: 4,
+      clientName: "CLIENT NAME",
+      projectName: "PROJECT NAME",
+      imageSrc: "/images/case-studies/project-4.jpg",
+      imageAlt: "Project 4",
+      videoSrc: "/videos/Soloskin-3.mp4",
+    },
+  ];
+
+  // Synchronize videos when hoveredCard changes
+  useEffect(() => {
+    if (hoveredCard !== null) {
+      const heroVideo = heroVideoRefs.current[hoveredCard];
+      const bgVideo = bgVideoRefs.current[hoveredCard];
+
+      if (heroVideo && bgVideo) {
+        // Reset both to start and sync
+        heroVideo.currentTime = 0;
+        bgVideo.currentTime = 0;
+
+        // Play both together
+        Promise.all([
+          heroVideo.play().catch(() => {}),
+          bgVideo.play().catch(() => {}),
+        ]);
+
+        // Keep them synced during playback
+        const syncVideos = () => {
+          if (Math.abs(heroVideo.currentTime - bgVideo.currentTime) > 0.1) {
+            bgVideo.currentTime = heroVideo.currentTime;
+          }
+        };
+
+        heroVideo.addEventListener("timeupdate", syncVideos);
+        return () => heroVideo.removeEventListener("timeupdate", syncVideos);
+      }
+    }
+  }, [hoveredCard]);
+
   return (
     <div className="bg-[#050505] text-white">
-      {/* Header & Hero Container */}
+      {/* Header Container */}
       <div className="flex flex-col items-center px-4 md:px-20 gap-2.5 relative mx-auto">
         {/* Header */}
         <Navigation />
+      </div>
 
-        {/* Hero Content */}
-        <section className="flex flex-col md:flex-row justify-center items-center py-12 md:py-20 md:pb-8 gap-6 md:gap-8 isolate w-full max-w-7xl min-h-[573px]">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-            WE ARE
-          </h1>
+      {/* Hero Content - Full Width */}
+      <section className="flex flex-col md:flex-row justify-center items-center py-12 md:py-20 pb-6 md:pb-8 gap-6 md:gap-8 isolate w-full min-h-[573px] relative overflow-hidden">
+        {/* Background video when hovering - dimmed with animation - Full Width */}
+        <div className="absolute inset-0 left-0 right-0 z-0 transition-opacity duration-500">
+          {caseStudies.map((study) => (
+            <div
+              key={`bg-${study.number}`}
+              className={`absolute inset-0 transition-opacity duration-500 ${
+                hoveredCard === study.number ? "opacity-20" : "opacity-0"
+              }`}
+            >
+              <video
+                ref={(el) => (bgVideoRefs.current[study.number] = el)}
+                src={study.videoSrc}
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
 
-          {/* Hero Image */}
-          <div className="w-[200px] h-[311px] md:w-[298px] md:h-[463px] relative overflow-hidden">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight relative z-10">
+          WE ARE
+        </h1>
+
+        {/* Hero Video/Image - Multiple with opacity transitions */}
+        <div className="w-[200px] h-[311px] md:w-[298px] md:h-[463px] relative overflow-hidden z-10">
+          {/* Default hero image */}
+          <div
+            className={`absolute inset-0 transition-opacity duration-500 ${
+              hoveredCard === null ? "opacity-100" : "opacity-0"
+            }`}
+          >
             <Image
               src="/images/hero/hero-main.jpg"
               alt="Hero image"
@@ -32,42 +134,47 @@ export default function Home() {
             />
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-            COBALT
-          </h1>
-        </section>
-      </div>
+          {/* Case study videos */}
+          {caseStudies.map((study) => (
+            <div
+              key={`hero-${study.number}`}
+              className={`absolute inset-0 transition-opacity duration-500 ${
+                hoveredCard === study.number ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <video
+                ref={(el) => (heroVideoRefs.current[study.number] = el)}
+                src={study.videoSrc}
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight relative z-10">
+          COBALT
+        </h1>
+      </section>
 
       {/* Featured Case Studies */}
-      <section className="grid grid-cols-2 md:flex md:flex-row md:justify-between items-center gap-4 md:gap-7 w-full max-w-[1536px] mb-16 mx-auto px-4">
-        <CaseStudyCard
-          number={1}
-          clientName="CLIENT NAME"
-          projectName="PROJECT NAME"
-          imageSrc="/images/case-studies/project-1.png"
-          imageAlt="Project 1"
-        />
-        <CaseStudyCard
-          number={2}
-          clientName="CLIENT NAME"
-          projectName="PROJECT NAME"
-          imageSrc="/images/case-studies/project-2.png"
-          imageAlt="Project 2"
-        />
-        <CaseStudyCard
-          number={3}
-          clientName="CLIENT NAME"
-          projectName="PROJECT NAME"
-          imageSrc="/images/case-studies/project-3.png"
-          imageAlt="Project 3"
-        />
-        <CaseStudyCard
-          number={4}
-          clientName="CLIENT NAME"
-          projectName="PROJECT NAME"
-          imageSrc="/images/case-studies/project-4.jpg"
-          imageAlt="Project 4"
-        />
+      <section className="grid grid-cols-2 md:flex md:flex-row md:justify-between items-center gap-4 md:gap-7 w-full max-w-[1536px] pt-4 md:pt-6 mb-16 mx-auto px-4">
+        {caseStudies.map((study) => (
+          <CaseStudyCard
+            key={study.number}
+            number={study.number}
+            clientName={study.clientName}
+            projectName={study.projectName}
+            imageSrc={study.imageSrc}
+            imageAlt={study.imageAlt}
+            isHovered={hoveredCard === study.number}
+            isDimmed={hoveredCard !== null && hoveredCard !== study.number}
+            onHoverStart={() => setHoveredCard(study.number)}
+            onHoverEnd={() => setHoveredCard(null)}
+          />
+        ))}
       </section>
 
       {/* Middle Content Container */}
@@ -256,7 +363,10 @@ export default function Home() {
             <Link href="/work" className="text-base md:text-xl font-semibold">
               SERVICES
             </Link>
-            <Link href="/contact" className="text-base md:text-xl font-semibold">
+            <Link
+              href="/contact"
+              className="text-base md:text-xl font-semibold"
+            >
               CONTACT
             </Link>
           </div>
@@ -266,10 +376,16 @@ export default function Home() {
             <a href="#" className="text-base md:text-xl font-semibold">
               INSTAGRAM
             </a>
-            <a href="mailto:hello@cobalt.com" className="text-base md:text-xl font-semibold">
+            <a
+              href="mailto:hello@cobalt.com"
+              className="text-base md:text-xl font-semibold"
+            >
               EMAIL
             </a>
-            <Link href="/contact" className="text-base md:text-xl font-semibold">
+            <Link
+              href="/contact"
+              className="text-base md:text-xl font-semibold"
+            >
               HAVE AN IDEA?
             </Link>
           </div>
