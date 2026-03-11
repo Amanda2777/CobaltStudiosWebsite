@@ -89,17 +89,7 @@ export default function Work() {
               />
 
               {/* Blurred overlay on hover - Progressive blur from top to bottom */}
-              {/* Background gradient layer */}
-              <div
-                className={`absolute inset-0 transition-opacity duration-500 ${
-                  hoveredProject === project.id ? "opacity-100" : "opacity-0"
-                }`}
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(5, 5, 5, 0.38) 100%)",
-                }}
-              />
-              {/* Progressive blur layer */}
+              {/* Progressive blur layer covering entire item */}
               <div
                 className={`absolute inset-0 backdrop-blur-[50px] transition-opacity duration-500 ${
                   hoveredProject === project.id ? "opacity-100" : "opacity-0"
@@ -109,6 +99,16 @@ export default function Work() {
                     "linear-gradient(180deg, transparent 0%, black 100%)",
                   WebkitMaskImage:
                     "linear-gradient(180deg, transparent 0%, black 100%)",
+                }}
+              />
+              {/* Background gradient layer */}
+              <div
+                className={`absolute inset-0 transition-opacity duration-500 ${
+                  hoveredProject === project.id ? "opacity-100" : "opacity-0"
+                }`}
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(5, 5, 5, 0.38) 100%)",
                 }}
               />
 
