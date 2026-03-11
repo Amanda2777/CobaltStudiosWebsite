@@ -23,7 +23,8 @@ export default function Home() {
       projectName: "PROJECT NAME",
       imageSrc: "/images/case-studies/project-1.png",
       imageAlt: "Project 1",
-      videoSrc: "/videos/KnQ new 5.mp4",
+      videoSrc:
+        "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/jewelry.mp4",
     },
     {
       number: 2,
@@ -31,7 +32,8 @@ export default function Home() {
       projectName: "PROJECT NAME",
       imageSrc: "/images/case-studies/project-2.png",
       imageAlt: "Project 2",
-      videoSrc: "/videos/Cow-3.mp4",
+      videoSrc:
+        "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/watch.mp4",
     },
     {
       number: 3,
@@ -39,7 +41,8 @@ export default function Home() {
       projectName: "PROJECT NAME",
       imageSrc: "/images/case-studies/project-3.png",
       imageAlt: "Project 3",
-      videoSrc: "/videos/1.mp4",
+      videoSrc:
+        "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/pizza.mp4",
     },
     {
       number: 4,
@@ -47,7 +50,8 @@ export default function Home() {
       projectName: "PROJECT NAME",
       imageSrc: "/images/case-studies/project-4.jpg",
       imageAlt: "Project 4",
-      videoSrc: "/videos/Soloskin-3.mp4",
+      videoSrc:
+        "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/soloskin.mp4",
     },
   ];
 
@@ -397,7 +401,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="flex flex-col justify-center items-center w-full mx-auto bg-[#050505]">
+      <footer className="flex flex-col justify-center items-center w-full mx-auto bg-[#050505] pb-8 md:pb-12">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 w-full max-w-[1142px] px-4 md:px-8 mb-8 md:mb-16">
           {/* Logo */}
           <Link href="/" className="shrink-0">
