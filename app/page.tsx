@@ -101,7 +101,7 @@ export default function Home() {
               }`}
             >
               <video
-                ref={(el) => (bgVideoRefs.current[study.number] = el)}
+                ref={(el) => { bgVideoRefs.current[study.number] = el; }}
                 src={study.videoSrc}
                 loop
                 muted
@@ -143,7 +143,7 @@ export default function Home() {
               }`}
             >
               <video
-                ref={(el) => (heroVideoRefs.current[study.number] = el)}
+                ref={(el) => { heroVideoRefs.current[study.number] = el; }}
                 src={study.videoSrc}
                 loop
                 muted
