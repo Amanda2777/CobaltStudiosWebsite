@@ -13,45 +13,105 @@ import { home } from "@/lib/home";
 export default function Home() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  // Refs for hero and background videos
-  const heroVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
-  const bgVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
+  // Single streamed video source + background mirror canvas.
+  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
+  const bgCanvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const caseStudies = home.caseStudies;
   const services = home.services;
   const faqs = home.faqs;
   const brandLogos = home.brandLogos;
 
-  useEffect(() => {
-    const cardToShow = hoveredCard ?? home.hero.defaultActiveCaseStudyNumber;
-    const heroVideo = heroVideoRefs.current[cardToShow];
-    const bgVideo = bgVideoRefs.current[cardToShow];
-
-    if (heroVideo && bgVideo) {
-      // Reset both to start and sync
-      heroVideo.currentTime = 0;
-      bgVideo.currentTime = 0;
-
-      // Play both together
-      Promise.all([
-        heroVideo.play().catch(() => {}),
-        bgVideo.play().catch(() => {}),
-      ]);
-
-      // Keep them synced during playback
-      const syncVideos = () => {
-        if (Math.abs(heroVideo.currentTime - bgVideo.currentTime) > 0.1) {
-          bgVideo.currentTime = heroVideo.currentTime;
-        }
-      };
-
-      heroVideo.addEventListener("timeupdate", syncVideos);
-      return () => heroVideo.removeEventListener("timeupdate", syncVideos);
-    }
-  }, [hoveredCard]);
-
   const activeCaseStudyNumber =
     hoveredCard ?? home.hero.defaultActiveCaseStudyNumber;
+  const activeCaseStudy =
+    caseStudies.find((study) => study.number === activeCaseStudyNumber) ??
+    caseStudies[0];
+
+  useEffect(() => {
+    const heroVideo = heroVideoRef.current;
+
+    if (!heroVideo) {
+      return;
+    }
+
+    heroVideo.currentTime = 0;
+    void heroVideo.play().catch(() => {});
+  }, [activeCaseStudyNumber]);
+
+  useEffect(() => {
+    const heroVideo = heroVideoRef.current;
+    const canvas = bgCanvasRef.current;
+
+    if (!heroVideo || !canvas) {
+      return;
+    }
+
+    const context = canvas.getContext("2d");
+
+    if (!context) {
+      return;
+    }
+
+    let rafId = 0;
+
+    const resizeCanvas = () => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+      canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+    };
+
+    const drawVideoFrameCover = () => {
+      if (heroVideo.readyState < 2 || !heroVideo.videoWidth || !heroVideo.videoHeight) {
+        return;
+      }
+
+      const vw = heroVideo.videoWidth;
+      const vh = heroVideo.videoHeight;
+      const cw = canvas.width;
+      const ch = canvas.height;
+
+      if (!cw || !ch) {
+        return;
+      }
+
+      const videoRatio = vw / vh;
+      const canvasRatio = cw / ch;
+
+      let sx = 0;
+      let sy = 0;
+      let sw = vw;
+      let sh = vh;
+
+      if (videoRatio > canvasRatio) {
+        sw = vh * canvasRatio;
+        sx = (vw - sw) / 2;
+      } else {
+        sh = vw / canvasRatio;
+        sy = (vh - sh) / 2;
+      }
+
+      context.clearRect(0, 0, cw, ch);
+      context.drawImage(heroVideo, sx, sy, sw, sh, 0, 0, cw, ch);
+    };
+
+    const renderLoop = () => {
+      drawVideoFrameCover();
+      rafId = window.requestAnimationFrame(renderLoop);
+    };
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+    rafId = window.requestAnimationFrame(renderLoop);
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
+  }, [activeCaseStudyNumber]);
 
   return (
     <div className="bg-[#050505] text-white">
@@ -65,27 +125,13 @@ export default function Home() {
       <section className="flex flex-col md:flex-row justify-center items-center py-12 md:py-20 pb-6 md:pb-8 gap-4 isolate w-full min-h-[573px] relative overflow-hidden">
         {/* Background video when hovering - dimmed with animation - Full Width */}
         <div className="absolute inset-0 left-0 right-0 z-0 transition-opacity duration-500">
-          {caseStudies.map((study) => (
-            <div
-              key={`bg-${study.number}`}
-              className={`absolute inset-0 transition-opacity duration-500 ${
-                study.number === activeCaseStudyNumber
-                  ? "opacity-20"
-                  : "opacity-0"
-              }`}
-            >
-              <video
-                ref={(el) => {
-                  bgVideoRefs.current[study.number] = el;
-                }}
-                src={study.videoSrc}
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
+          <div className="absolute inset-0 opacity-20 transition-opacity duration-500">
+            <canvas
+              ref={bgCanvasRef}
+              className="w-full h-full"
+              aria-hidden="true"
+            />
+          </div>
         </div>
 
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight relative z-10">
@@ -94,28 +140,16 @@ export default function Home() {
 
         {/* Hero Video/Image - Multiple with opacity transitions */}
         <div className="w-[200px] h-[311px] md:w-[298px] md:h-[463px] relative overflow-hidden z-10">
-          {/* Case study videos */}
-          {caseStudies.map((study) => (
-            <div
-              key={`hero-${study.number}`}
-              className={`absolute inset-0 transition-opacity duration-500 ${
-                study.number === activeCaseStudyNumber
-                  ? "opacity-100"
-                  : "opacity-0"
-              }`}
-            >
-              <video
-                ref={(el) => {
-                  heroVideoRefs.current[study.number] = el;
-                }}
-                src={study.videoSrc}
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
+          <video
+            key={`hero-${activeCaseStudy.number}`}
+            ref={heroVideoRef}
+            src={activeCaseStudy.videoSrc}
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+          />
         </div>
 
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight relative z-10">
