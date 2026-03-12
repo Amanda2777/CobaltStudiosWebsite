@@ -3,68 +3,11 @@
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Image from "next/image";
+import Link from "next/link";
+import { works } from "@/lib/work";
 
 export default function Work() {
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-
-  const projects = [
-    {
-      id: 1,
-      image: "/images/case-studies/project-1.png",
-      client: "CLIENT NAME",
-      year: "2025",
-      service: "CREATIVE PRODUCTION",
-    },
-    {
-      id: 2,
-      image: "/images/case-studies/project-2.png",
-      client: "CLIENT NAME",
-      year: "2025",
-      service: "BRANDING",
-    },
-    {
-      id: 3,
-      image: "/images/case-studies/project-3.png",
-      client: "CLIENT NAME",
-      year: "2025",
-      service: "SOCIAL MEDIA",
-    },
-    {
-      id: 4,
-      image: "/images/case-studies/project-4.jpg",
-      client: "CLIENT NAME",
-      year: "2025",
-      service: "CREATIVE PRODUCTION",
-    },
-    {
-      id: 5,
-      image: "/images/hero/hero-main.jpg",
-      client: "CLIENT NAME",
-      year: "2025",
-      service: "BRANDING",
-    },
-    {
-      id: 6,
-      image: "/images/services/creative-production.jpg",
-      client: "CLIENT NAME",
-      year: "2025",
-      service: "SOCIAL MEDIA",
-    },
-    {
-      id: 7,
-      image: "/images/services/branding.jpg",
-      client: "CLIENT NAME",
-      year: "2024",
-      service: "CREATIVE PRODUCTION",
-    },
-    {
-      id: 8,
-      image: "/images/services/social-media.jpg",
-      client: "CLIENT NAME",
-      year: "2024",
-      service: "BRANDING",
-    },
-  ];
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
@@ -72,27 +15,25 @@ export default function Work() {
 
       <main className="w-full max-w-[1536px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          {projects.map((project) => (
-            <div
-              key={project.id}
+          {works.map((project) => (
+            <Link
+              key={project.slug}
+              href={`/work/${project.slug}`}
               className="relative w-full h-[340px] md:h-[680px] overflow-hidden group cursor-pointer"
-              onMouseEnter={() => setHoveredProject(project.id)}
+              onMouseEnter={() => setHoveredProject(project.slug)}
               onMouseLeave={() => setHoveredProject(null)}
             >
-              {/* Background Image */}
               <Image
-                src={project.image}
-                alt={project.client}
+                src={project.workGridImage}
+                alt={project.clientName}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
 
-              {/* Blurred overlay on hover - Progressive blur from top to bottom */}
-              {/* Progressive blur layer covering entire item */}
               <div
                 className={`absolute inset-0 backdrop-blur-[50px] transition-opacity duration-500 ${
-                  hoveredProject === project.id ? "opacity-100" : "opacity-0"
+                  hoveredProject === project.slug ? "opacity-100" : "opacity-0"
                 }`}
                 style={{
                   maskImage:
@@ -101,10 +42,10 @@ export default function Work() {
                     "linear-gradient(180deg, transparent 0%, black 100%)",
                 }}
               />
-              {/* Background gradient layer */}
+
               <div
                 className={`absolute inset-0 transition-opacity duration-500 ${
-                  hoveredProject === project.id ? "opacity-100" : "opacity-0"
+                  hoveredProject === project.slug ? "opacity-100" : "opacity-0"
                 }`}
                 style={{
                   background:
@@ -112,28 +53,25 @@ export default function Work() {
                 }}
               />
 
-              {/* Hover Details */}
               <div
                 className={`absolute inset-0 flex flex-col justify-center items-end px-6 md:px-10 gap-6 md:gap-8 transition-opacity duration-500 ${
-                  hoveredProject === project.id ? "opacity-100" : "opacity-0"
+                  hoveredProject === project.slug ? "opacity-100" : "opacity-0"
                 }`}
               >
-                {/* Client info */}
                 <div className="flex flex-col items-end gap-2.5">
                   <p className="text-lg md:text-xl font-semibold text-right">
-                    {project.client}
+                    {project.clientName}
                   </p>
                   <p className="text-lg md:text-xl font-semibold">
                     {project.year}
                   </p>
                 </div>
 
-                {/* Service */}
                 <p className="text-base md:text-xl font-semibold text-right">
                   {project.service}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </main>

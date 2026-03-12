@@ -8,6 +8,7 @@ import CaseStudyCard from "@/components/CaseStudyCard";
 import ServiceCard from "@/components/ServiceCard";
 import FAQItem from "@/components/FAQItem";
 import Button from "@/components/Button";
+import { home } from "@/lib/home";
 
 export default function Home() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -16,124 +17,13 @@ export default function Home() {
   const heroVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
   const bgVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
 
-  const caseStudies = [
-    {
-      number: 1,
-      clientName: "CLIENT NAME",
-      projectName: "PROJECT NAME",
-      imageSrc: "/images/case-studies/project-1.png",
-      imageAlt: "Project 1",
-      videoSrc:
-        "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/jewelry.mp4",
-    },
-    {
-      number: 2,
-      clientName: "CLIENT NAME",
-      projectName: "PROJECT NAME",
-      imageSrc: "/images/case-studies/project-2.png",
-      imageAlt: "Project 2",
-      videoSrc:
-        "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/watch.mp4",
-    },
-    {
-      number: 3,
-      clientName: "CLIENT NAME",
-      projectName: "PROJECT NAME",
-      imageSrc: "/images/case-studies/project-3.png",
-      imageAlt: "Project 3",
-      videoSrc:
-        "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/pizza.mp4",
-    },
-    {
-      number: 4,
-      clientName: "CLIENT NAME",
-      projectName: "PROJECT NAME",
-      imageSrc: "/images/case-studies/project-4.jpg",
-      imageAlt: "Project 4",
-      videoSrc:
-        "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/soloskin.mp4",
-    },
-  ];
+  const caseStudies = home.caseStudies;
+  const services = home.services;
+  const faqs = home.faqs;
+  const brandLogos = home.brandLogos;
 
-  const services = [
-    {
-      id: 1,
-      title: "CREATIVE PRODUCTION",
-      imageSrc: "/images/services/creative-production.jpg",
-      imageAlt: "Creative Production",
-      description:
-        "From concept to completion, we produce stunning visual content that captures attention and drives engagement.",
-      gradientOpacity: 60,
-      href: "/work",
-    },
-    {
-      id: 2,
-      title: "BRANDING",
-      imageSrc: "/images/services/branding.jpg",
-      imageAlt: "Branding",
-      description:
-        "Build a memorable brand identity that resonates with your audience and stands out in the market.",
-      gradientOpacity: 20,
-      href: "/work",
-    },
-    {
-      id: 3,
-      title: "SOCIAL MEDIA MANAGEMENT",
-      imageSrc: "/images/services/social-media.jpg",
-      imageAlt: "Social Media Management",
-      description:
-        "Strategic content creation and community management that grows your presence and connects with your audience.",
-      gradientOpacity: 0,
-      href: "/work",
-    },
-  ];
-
-  const faqs = [
-    {
-      id: 1,
-      question: "WHAT KIND OF PROJECTS DO YOU TAKE ON?",
-      answer:
-        "From branding and social content to motion graphics and full channel management - we handle creative work that helps brands stand out online.",
-      defaultOpen: false,
-    },
-    {
-      id: 2,
-      question: "HOW LONG DOES A TYPICAL PROJECT TAKE?",
-      answer:
-        "Project timelines vary depending on scope, but most projects range from 2-6 weeks from concept to delivery.",
-      defaultOpen: false,
-    },
-    {
-      id: 3,
-      question: "DO YOU WORK WITH CLIENTS REMOTELY?",
-      answer:
-        "Yes! We work with clients all over the world. Our process is designed to be seamless whether you're local or remote.",
-      defaultOpen: false,
-    },
-    {
-      id: 4,
-      question: "WHAT'S YOUR PRICING STRUCTURE?",
-      answer:
-        "We offer custom quotes based on project scope and requirements. Get in touch for a detailed proposal tailored to your needs.",
-      defaultOpen: false,
-    },
-    {
-      id: 5,
-      question: "CAN WE SEE MORE OF YOUR WORK?",
-      answer:
-        "Absolutely! Check out our portfolio page to see our latest projects and case studies across various industries.",
-      defaultOpen: false,
-    },
-  ];
-
-  const brandLogos = [
-    { src: "/images/brands/rhode.svg", alt: "Rhode" },
-    { src: "/images/brands/Sephora.svg", alt: "Sephora" },
-  ];
-
-  // Auto-play pizza video (card 3) on mount and synchronize videos when hoveredCard changes
   useEffect(() => {
-    const cardToShow = hoveredCard ?? 3; // Default to card 3 (pizza) when no hover
+    const cardToShow = hoveredCard ?? home.hero.defaultActiveCaseStudyNumber;
     const heroVideo = heroVideoRefs.current[cardToShow];
     const bgVideo = bgVideoRefs.current[cardToShow];
 
@@ -160,6 +50,9 @@ export default function Home() {
     }
   }, [hoveredCard]);
 
+  const activeCaseStudyNumber =
+    hoveredCard ?? home.hero.defaultActiveCaseStudyNumber;
+
   return (
     <div className="bg-[#050505] text-white">
       {/* Header Container */}
@@ -176,8 +69,7 @@ export default function Home() {
             <div
               key={`bg-${study.number}`}
               className={`absolute inset-0 transition-opacity duration-500 ${
-                (hoveredCard === null && study.number === 3) ||
-                hoveredCard === study.number
+                study.number === activeCaseStudyNumber
                   ? "opacity-20"
                   : "opacity-0"
               }`}
@@ -197,7 +89,7 @@ export default function Home() {
         </div>
 
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight relative z-10">
-          WE ARE
+          {home.hero.titlePrefix}
         </h1>
 
         {/* Hero Video/Image - Multiple with opacity transitions */}
@@ -207,8 +99,7 @@ export default function Home() {
             <div
               key={`hero-${study.number}`}
               className={`absolute inset-0 transition-opacity duration-500 ${
-                (hoveredCard === null && study.number === 3) ||
-                hoveredCard === study.number
+                study.number === activeCaseStudyNumber
                   ? "opacity-100"
                   : "opacity-0"
               }`}
@@ -228,7 +119,7 @@ export default function Home() {
         </div>
 
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight relative z-10">
-          COBALT
+          {home.hero.titleSuffix}
         </h1>
       </section>
 
@@ -258,7 +149,7 @@ export default function Home() {
             href="/work"
             className="text-lg md:text-xl flex items-center gap-2"
           >
-            SEE ALL WORKS
+            {home.seeAllWorksLabel}
             <span className="text-2xl">→</span>
           </Link>
         </div>
@@ -266,16 +157,15 @@ export default function Home() {
         {/* Paragraph Section */}
         <section className="flex flex-col justify-center items-center py-12 md:py-[250px] gap-8 md:gap-12 w-full max-w-[792px] mb-8 md:mb-16 px-4">
           <h2 className="text-3xl md:text-5xl font-semibold text-center leading-tight tracking-tight">
-            The story your brand deserves. Content that keeps them watching.
+            {home.storySection.headline}
           </h2>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 w-full">
-            <Button href="/work" variant="secondary">
-              SERVICES
-            </Button>
-            <Button href="/contact" variant="primary">
-              CONTACT US
-            </Button>
+            {home.storySection.buttons.map((button) => (
+              <Button key={button.label} href={button.href} variant={button.variant}>
+                {button.label}
+              </Button>
+            ))}
           </div>
         </section>
       </div>
@@ -300,11 +190,11 @@ export default function Home() {
         {/* Brand Logos */}
         <section className="flex flex-col justify-center items-center py-12 md:py-50 gap-6 md:gap-9 w-full max-w-[793px] mb-8 md:mb-16">
           <p className="text-base md:text-xl text-center text-white/40">
-            WE&apos;VE SHOT WITH
+            {home.brandSection.title}
           </p>
 
           <div className="flex flex-row items-center justify-center gap-8 md:gap-12 w-full">
-            {[...Array(3)].map((_, repeatIndex) => (
+            {Array.from({ length: home.brandSection.repeatCount }).map((_, repeatIndex) => (
               <div
                 key={repeatIndex}
                 className="flex flex-row items-center gap-8 md:gap-12"
@@ -331,7 +221,7 @@ export default function Home() {
         {/* FAQs */}
         <section className="flex flex-col items-start pb-12 md:pb-50 gap-8 md:gap-15 w-full max-w-[900px] mb-8 md:mb-16 px-4">
           <h2 className="text-5xl font-medium text-center w-full tracking-tight">
-            FAQs
+            {home.faqSection.title}
           </h2>
 
           <div className="flex flex-col justify-center items-start gap-15 w-full">
@@ -352,8 +242,8 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/backgrounds/contact-cta.jpg"
-            alt="Contact background"
+            src={home.contactCta.backgroundImageSrc}
+            alt={home.contactCta.backgroundImageAlt}
             fill
             sizes="100vw"
             className="object-cover blur-[2px]"
@@ -371,114 +261,37 @@ export default function Home() {
         <div className="absolute inset-0 flex flex-col justify-center items-center gap-6 md:gap-11 px-4 md:px-8">
           <div className="flex flex-col items-center gap-2.5 w-full max-w-[678px]">
             <h2 className="text-3xl md:text-6xl font-bold text-center leading-none tracking-[-0.02em]">
-              ALL GREAT IDEAS START WITH HELLO
+              {home.contactCta.headline}
             </h2>
             <p className="text-xl md:text-3xl font-medium text-center leading-none">
-              Let&apos;s get your story out there!
+              {home.contactCta.subheadline}
             </p>
           </div>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-5 w-full">
-            <Button href="/work" variant="secondary">
-              SERVICES
-            </Button>
-            <Button
-              href="/contact"
-              variant="primary"
-              icon={
-                <Image
-                  src="/icons/whatsapp.svg"
-                  alt="WhatsApp"
-                  width={22}
-                  height={22}
-                />
-              }
-            >
-              WHATSAPP US!
-            </Button>
+            {home.contactCta.buttons.map((button) => (
+              <Button
+                key={button.label}
+                href={button.href}
+                variant={button.variant}
+                icon={
+                  button.iconSrc ? (
+                    <Image
+                      src={button.iconSrc}
+                      alt={button.iconAlt ?? button.label}
+                      width={22}
+                      height={22}
+                    />
+                  ) : undefined
+                }
+              >
+                {button.label}
+              </Button>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="flex flex-col justify-center items-center w-full mx-auto bg-[#050505] pb-8 md:pb-12">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8 w-full max-w-[1142px] px-4 md:px-8 mb-8 md:mb-16">
-          {/* Logo */}
-          <Link href="/" className="shrink-0">
-            <Image
-              src="/logo-large.svg"
-              alt="COBALT"
-              width={196}
-              height={56}
-              className="h-10 md:h-14 w-auto"
-            />
-          </Link>
-
-          <div className="flex flex-row gap-16 md:gap-48 items-start">
-            {/* Navigation Links */}
-            <div className="flex flex-col justify-start items-start gap-2.5">
-              <Link
-                href="/about"
-                className="text-base md:text-xl font-semibold"
-              >
-                OUR STORY
-              </Link>
-              <Link href="/work" className="text-base md:text-xl font-semibold">
-                WORK
-              </Link>
-              <Link href="/work" className="text-base md:text-xl font-semibold">
-                SERVICES
-              </Link>
-              <Link
-                href="/contact"
-                className="text-base md:text-xl font-semibold"
-              >
-                CONTACT
-              </Link>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex flex-col justify-start items-start gap-2.5">
-              <a href="#" className="text-base md:text-xl font-semibold">
-                INSTAGRAM
-              </a>
-              <a
-                href="mailto:hello@cobalt.com"
-                className="text-base md:text-xl font-semibold"
-              >
-                EMAIL
-              </a>
-              <Link
-                href="/contact"
-                className="text-base md:text-xl font-semibold"
-              >
-                HAVE AN IDEA?
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col md:flex-row items-start md:items-end gap-8 md:gap-[831px] w-full max-w-[1142px] px-4 md:px-8">
-          <div className="relative w-[100px] h-[150px] md:w-[147px] md:h-[230px] overflow-hidden">
-            <Image
-              src="/images/case-studies/project-3.png"
-              alt="Footer image"
-              fill
-              sizes="(max-width: 768px) 100px, 147px"
-              className="object-cover"
-            />
-          </div>
-
-          <div className="flex flex-col justify-center items-start gap-2.5 w-auto md:w-[108px]">
-            <Link href="#" className="text-sm md:text-base whitespace-nowrap">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="text-sm md:text-base whitespace-nowrap">
-              Terms and conditions
-            </Link>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

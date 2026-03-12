@@ -1,0 +1,182 @@
+{
+  "works": [
+    {
+      "id": 1,
+      "slug": "soloskin",
+      "clientName": "SOLOSKIN",
+      "year": "2025",
+      "service": "CREATIVE PRODUCTION",
+      "title": "Exosome launch campaign",
+      "teaser": "Clinical skincare launch campaign across product stills, talent portraits, and lab storytelling assets.",
+      "workGridImage": "/images/case-studies/project-4.jpg",
+      "detailRows": [
+        {
+          "images": [
+            {
+              "src": "/images/case-studies/project-1.png",
+              "alt": "SoloSkin campaign moodboard",
+              "aspectRatio": "4 / 5"
+            },
+            {
+              "src": "/images/case-studies/project-4.jpg",
+              "alt": "Model portrait with SoloSkin product",
+              "aspectRatio": "4 / 5"
+            }
+          ]
+        },
+        {
+          "images": [
+            {
+              "src": "/images/services/branding.jpg",
+              "alt": "Product splash visual",
+              "aspectRatio": "3 / 4"
+            },
+            {
+              "src": "/images/services/social-media.jpg",
+              "alt": "Behind the scenes studio portrait",
+              "aspectRatio": "3 / 4"
+            },
+            {
+              "src": "/images/case-studies/project-2.png",
+              "alt": "Lab scene with serum sample",
+              "aspectRatio": "3 / 4"
+            }
+          ]
+        },
+        {
+          "images": [
+            {
+              "src": "/images/hero/hero-main.jpg",
+              "alt": "SoloSkin hero key visual",
+              "aspectRatio": "21 / 9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "lumin",
+      "clientName": "LUMIN",
+      "year": "2025",
+      "service": "BRANDING",
+      "title": "Brand refresh",
+      "teaser": "Positioning and identity visuals crafted for an elevated digital-first cosmetics label.",
+      "workGridImage": "/images/case-studies/project-1.png",
+      "detailRows": [
+        {
+          "images": [
+            {
+              "src": "/images/case-studies/project-1.png",
+              "alt": "LUMIN brand system collage",
+              "aspectRatio": "5 / 4"
+            },
+            {
+              "src": "/images/services/creative-production.jpg",
+              "alt": "LUMIN campaign portrait",
+              "aspectRatio": "5 / 4"
+            }
+          ]
+        },
+        {
+          "images": [
+            {
+              "src": "/images/services/social-media.jpg",
+              "alt": "Social content direction",
+              "aspectRatio": "4 / 5"
+            },
+            {
+              "src": "/images/case-studies/project-3.png",
+              "alt": "Packaging and texture studies",
+              "aspectRatio": "4 / 5"
+            }
+          ]
+        },
+        {
+          "images": [
+            {
+              "src": "/images/services/branding.jpg",
+              "alt": "LUMIN product hero render",
+              "aspectRatio": "16 / 9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "clara",
+      "clientName": "CLARA",
+      "year": "2024",
+      "service": "SOCIAL MEDIA",
+      "title": "Always-on social",
+      "teaser": "A full-funnel social content engine combining UGC, studio shoots, and ad-ready motion stills.",
+      "workGridImage": "/images/case-studies/project-2.png",
+      "detailRows": [
+        {
+          "images": [
+            {
+              "src": "/images/case-studies/project-2.png",
+              "alt": "CLARA social grid preview",
+              "aspectRatio": "1 / 1"
+            },
+            {
+              "src": "/images/case-studies/project-3.png",
+              "alt": "CLARA studio frame",
+              "aspectRatio": "1 / 1"
+            },
+            {
+              "src": "/images/services/branding.jpg",
+              "alt": "CLARA product still life",
+              "aspectRatio": "1 / 1"
+            }
+          ]
+        },
+        {
+          "images": [
+            {
+              "src": "/images/services/creative-production.jpg",
+              "alt": "CLARA campaign portrait",
+              "aspectRatio": "3 / 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "northline",
+      "clientName": "NORTHLINE",
+      "year": "2024",
+      "service": "CREATIVE PRODUCTION",
+      "title": "Commercial campaign",
+      "teaser": "High-impact ad creative for product drops, launch films, and paid social formats.",
+      "workGridImage": "/images/case-studies/project-3.png",
+      "detailRows": [
+        {
+          "images": [
+            {
+              "src": "/images/case-studies/project-3.png",
+              "alt": "Northline campaign still",
+              "aspectRatio": "4 / 5"
+            },
+            {
+              "src": "/images/case-studies/project-4.jpg",
+              "alt": "Northline portrait capture",
+              "aspectRatio": "4 / 5"
+            }
+          ]
+        },
+        {
+          "images": [
+            {
+              "src": "/images/hero/hero-main.jpg",
+              "alt": "Northline hero frame",
+              "aspectRatio": "2 / 1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
