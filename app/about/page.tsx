@@ -22,7 +22,7 @@ export default function About() {
           <div className="absolute inset-0 bg-black/72" />
 
           <div className="relative z-10 mx-auto w-full max-w-[1142px] px-4 md:px-8 py-10 md:pt-24 md:pb-16">
-            <div className="w-full max-w-[620px] pl-0 pr-4 py-5 md:pr-8 md:py-8 space-y-6 md:space-y-8">
+            <div className="w-full max-w-[620px] pl-0 pr-4 py-12 md:pr-8 md:py-16 space-y-6 md:space-y-8">
               <div className="space-y-5 md:space-y-6">
                 {about.hero.paragraphs.map((paragraph) => (
                   <p key={paragraph} className="text-[18px] md:text-[30px] leading-[1.1]">

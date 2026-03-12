@@ -23,7 +23,7 @@ export default function Button({
   return (
     <Link
       href={href}
-      className={`${baseStyles} ${variantStyles[variant]} ${icon ? "flex items-center gap-2.5" : ""}`}
+      className={`${baseStyles} ${variantStyles[variant]} ${icon ? "inline-flex items-center gap-2.5" : ""}`}
     >
       {children}
       {icon}
