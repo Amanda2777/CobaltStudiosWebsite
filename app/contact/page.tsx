@@ -19,8 +19,8 @@ export default function Contact() {
             <div className="space-y-6 text-lg">
               <div>
                 <p className="text-[#ABABAB] text-sm tracking-wider mb-2">EMAIL</p>
-                <a href="mailto:hello@cobalt.com" className="hover:text-[#ABABAB] transition-colors">
-                  hello@cobalt.com
+                <a href="mailto:nikita@cobaltmade.com" className="hover:text-[#ABABAB] transition-colors">
+                  nikita@cobaltmade.com
                 </a>
               </div>
               

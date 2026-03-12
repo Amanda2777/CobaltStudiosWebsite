@@ -37,14 +37,17 @@ export default function Footer() {
                 INSTAGRAM
               </a>
               <a
-                href="mailto:hello@cobalt.com"
+                href="mailto:nikita@cobaltmade.com"
                 className="text-[26px] leading-[1.05] md:text-xl md:font-semibold"
               >
                 EMAIL
               </a>
-              <Link href="/contact" className="text-[26px] leading-[1.05] md:text-xl md:font-semibold">
+              <a
+                href="mailto:team@cobaltmade.com"
+                className="text-[26px] leading-[1.05] md:text-xl md:font-semibold"
+              >
                 HAVE AN IDEA?
-              </Link>
+              </a>
             </div>
           </div>
         </div>
