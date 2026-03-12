@@ -1,0 +1,37 @@
+{
+  "hero": {
+    "backgroundImageSrc": "/images/backgrounds/about-header.png",
+    "backgroundImageAlt": "Studio setup background",
+    "paragraphs": [
+      "We're storytellers, strategists, and creatives obsessed with making content that connects.",
+      "Two of us live for the craft, one of us makes sure it all actually works - understanding the business, connecting the dots, and keeping everything moving in the right direction.",
+      "We put our heads together because we want to build something worth telling. If you've got a vision, we'd love to hear it."
+    ],
+    "primaryAction": {
+      "label": "WATCH US WORK",
+      "href": "https://www.instagram.com/cobalt.made/",
+      "iconSrc": "/icons/instagram.svg",
+      "iconAlt": "Instagram"
+    }
+  },
+  "cta": {
+    "backgroundImageSrc": "/images/backgrounds/contact-cta.jpg",
+    "backgroundImageAlt": "Contact background",
+    "headline": "ALL GREAT IDEAS START WITH HELLO",
+    "subheadline": "Let's get your story out there!",
+    "buttons": [
+      {
+        "label": "SERVICES",
+        "href": "/work",
+        "variant": "secondary"
+      },
+      {
+        "label": "WHATSAPP US!",
+        "href": "/contact",
+        "variant": "primary",
+        "iconSrc": "/icons/whatsapp.svg",
+        "iconAlt": "WhatsApp"
+      }
+    ]
+  }
+}
