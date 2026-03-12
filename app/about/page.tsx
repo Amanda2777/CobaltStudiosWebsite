@@ -1,7 +1,31 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Button from "@/components/Button";
 import Navigation from "@/components/Navigation";
 import { about } from "@/lib/about";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Meet COBALT, a team of storytellers, strategists, and creatives building high-impact content for modern brands.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About | COBALT",
+    description:
+      "Meet COBALT, a team of storytellers, strategists, and creatives building high-impact content for modern brands.",
+    url: "/about",
+    images: [
+      {
+        url: "/images/backgrounds/about-header.png",
+        width: 1200,
+        height: 630,
+        alt: "COBALT about page",
+      },
+    ],
+  },
+};
 
 export default function About() {
   return (

@@ -20,13 +20,35 @@ export async function generateMetadata({
 
   if (!work) {
     return {
-      title: "Work Not Found | Cobalt",
+      title: "Work Not Found",
+      description: "The requested case study could not be found.",
     };
   }
 
   return {
-    title: `${work.clientName} | Cobalt`,
+    title: work.clientName,
     description: work.teaser,
+    alternates: {
+      canonical: `/work/${work.slug}`,
+    },
+    openGraph: {
+      type: "article",
+      title: `${work.clientName} | COBALT`,
+      description: work.teaser,
+      url: `/work/${work.slug}`,
+      images: [
+        {
+          url: work.workGridImage,
+          alt: work.clientName,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${work.clientName} | COBALT`,
+      description: work.teaser,
+      images: [work.workGridImage],
+    },
   };
 }
 

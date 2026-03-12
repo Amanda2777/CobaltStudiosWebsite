@@ -58,7 +58,7 @@ export default function Home() {
       {/* Header Container */}
       <div className="flex flex-col items-center px-4 md:px-20 gap-2.5 relative mx-auto">
         {/* Header */}
-        <Navigation />
+        <Navigation transparent />
       </div>
 
       {/* Hero Content - Full Width */}
