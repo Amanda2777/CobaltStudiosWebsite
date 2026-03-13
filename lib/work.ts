@@ -3,7 +3,6 @@ import workData from "@/data/work.json";
 export interface WorkRowImage {
   src: string;
   alt: string;
-  aspectRatio?: string;
 }
 
 export interface WorkImageRow {

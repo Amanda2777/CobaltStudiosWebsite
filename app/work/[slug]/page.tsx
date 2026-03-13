@@ -56,6 +56,8 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
   const { slug } = await params;
   const work = getWorkBySlug(slug);
 
+  const getRowHeight = (imageCount: number) => (imageCount === 1 ? 775 : 680);
+
   if (!work) {
     notFound();
   }
@@ -88,22 +90,24 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
         <section className="space-y-0">
           {/* Mobile: force all images into one vertical list. */}
           <div className="md:hidden">
-            {work.detailRows.flatMap((row) => row.images).map((image, imageIndex) => (
-              <div
-                key={`${work.slug}-mobile-image-${imageIndex}`}
-                className="relative w-full"
-                style={{ aspectRatio: image.aspectRatio ?? "4 / 3" }}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="100vw"
-                  className="object-cover"
-                  priority={imageIndex < 2}
-                />
-              </div>
-            ))}
+            {work.detailRows.flatMap((row, rowIndex) =>
+              row.images.map((image, imageIndex) => (
+                <div
+                  key={`${work.slug}-mobile-row-${rowIndex}-image-${imageIndex}`}
+                  className="relative w-full"
+                  style={{ height: `${getRowHeight(row.images.length)}px` }}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="100vw"
+                    className="object-cover"
+                    priority={rowIndex === 0 && imageIndex < 2}
+                  />
+                </div>
+              ))
+            )}
           </div>
 
           {/* Desktop: preserve row/column layout from JSON. */}
@@ -114,13 +118,13 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
                 className="grid gap-0"
                 style={{
                   gridTemplateColumns: `repeat(${row.images.length}, minmax(0, 1fr))`,
+                  height: `${getRowHeight(row.images.length)}px`,
                 }}
               >
                 {row.images.map((image, imageIndex) => (
                   <div
                     key={`${work.slug}-row-${rowIndex}-image-${imageIndex}`}
-                    className="relative w-full"
-                    style={{ aspectRatio: image.aspectRatio ?? "4 / 3" }}
+                    className="relative w-full h-full"
                   >
                     <Image
                       src={image.src}

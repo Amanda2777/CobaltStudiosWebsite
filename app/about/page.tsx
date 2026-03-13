@@ -33,7 +33,7 @@ export default function About() {
       <Navigation transparent />
 
       <main className="w-full max-w-[1536px] mx-auto pt-[124px] md:pt-0">
-        <section className="relative min-h-[66vh] md:min-h-[74vh] overflow-hidden">
+        <section className="relative min-h-[66vh] md:min-h-screen overflow-hidden flex items-center">
           <Image
             src={about.hero.backgroundImageSrc}
             alt={about.hero.backgroundImageAlt}
@@ -45,7 +45,7 @@ export default function About() {
 
           <div className="absolute inset-0 bg-black/72" />
 
-          <div className="relative z-10 mx-auto w-full max-w-[1142px] px-4 md:px-8 py-10 md:pt-24 md:pb-16">
+          <div className="relative z-10 mx-auto w-full max-w-[1142px] px-4 md:px-8 py-10 md:py-0">
             <div className="w-full max-w-[620px] pl-0 pr-4 py-12 md:pr-8 md:py-16 space-y-6 md:space-y-8">
               <div className="space-y-5 md:space-y-6">
                 {about.hero.paragraphs.map((paragraph) => (
@@ -58,6 +58,7 @@ export default function About() {
               <Button
                 href={about.hero.primaryAction.href}
                 variant="primary"
+                openInNewTab
                 icon={
                   about.hero.primaryAction.iconSrc ? (
                     <Image

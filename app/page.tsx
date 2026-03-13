@@ -122,7 +122,7 @@ export default function Home() {
       </div>
 
       {/* Hero Content - Full Width */}
-      <section className="flex flex-col md:flex-row justify-center items-center py-12 md:py-20 pb-6 md:pb-8 gap-4 isolate w-full min-h-[573px] relative overflow-hidden">
+      <section className="flex flex-row justify-center items-center pt-20 pb-10 md:pt-24 md:pb-16 gap-2 md:gap-4 isolate w-full min-h-[573px] relative overflow-hidden">
         {/* Background video when hovering - dimmed with animation - Full Width */}
         <div className="absolute inset-0 left-0 right-0 z-0 transition-opacity duration-500">
           <div className="absolute inset-0 opacity-20 transition-opacity duration-500">
@@ -134,12 +134,12 @@ export default function Home() {
           </div>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight relative z-10">
+        <h1 className="text-sm sm:text-base md:text-5xl font-bold md:tracking-tight whitespace-nowrap px-3 md:px-0 relative z-10">
           {home.hero.titlePrefix}
         </h1>
 
         {/* Hero Video/Image - Multiple with opacity transitions */}
-        <div className="w-[200px] h-[311px] md:w-[298px] md:h-[463px] relative overflow-hidden z-10">
+        <div className="w-56 sm:w-60 h-90 md:w-96 md:h-138 relative overflow-hidden z-10">
           <video
             key={`hero-${activeCaseStudy.number}`}
             ref={heroVideoRef}
@@ -152,7 +152,7 @@ export default function Home() {
           />
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight relative z-10">
+        <h1 className="text-sm sm:text-base md:text-5xl font-bold md:tracking-tight whitespace-nowrap px-3 md:px-0 relative z-10">
           {home.hero.titleSuffix}
         </h1>
       </section>

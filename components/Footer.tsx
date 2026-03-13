@@ -24,16 +24,21 @@ export default function Footer() {
               <Link href="/work" className="text-[26px] leading-[1.05] md:text-xl md:font-semibold">
                 WORK
               </Link>
-              <Link href="/work" className="text-[26px] leading-[1.05] md:text-xl md:font-semibold">
+              {/* <Link href="/work" className="text-[26px] leading-[1.05] md:text-xl md:font-semibold">
                 SERVICES
-              </Link>
+              </Link> */}
               <Link href="/contact" className="text-[26px] leading-[1.05] md:text-xl md:font-semibold">
                 CONTACT
               </Link>
             </div>
 
             <div className="flex flex-col items-start gap-2.5">
-              <a href="#" className="text-[26px] leading-[1.05] md:text-xl md:font-semibold">
+              <a
+                href="https://www.instagram.com/cobalt.made/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-[26px] leading-[1.05] md:text-xl md:font-semibold"
+              >
                 INSTAGRAM
               </a>
               <a
