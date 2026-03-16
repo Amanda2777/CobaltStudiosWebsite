@@ -9,7 +9,7 @@
     "headline": "The story your brand deserves. Content that keeps them watching.",
     "buttons": [
       {
-        "label": "SERVICES",
+        "label": "OUR WORKS",
         "href": "/work",
         "variant": "secondary"
       },
@@ -34,12 +34,12 @@
     "subheadline": "Let's get your story out there!",
     "buttons": [
       {
-        "label": "SERVICES",
+        "label": "OUR WORKS",
         "href": "/work",
         "variant": "secondary"
       },
       {
-        "label": "WHATSAPP US!",
+        "label": "CONTACT US!",
         "href": "/contact",
         "variant": "primary",
         "iconSrc": "/icons/whatsapp.svg",
@@ -87,7 +87,7 @@
       "title": "CREATIVE PRODUCTION",
       "imageSrc": "/images/services/creative-production.jpg",
       "imageAlt": "Creative Production",
-      "description": "From concept to completion, we produce stunning visual content that captures attention and drives engagement.",
+      "description": "We bring ideas to life, from the first conversation to the final frame.",
       "gradientOpacity": 60,
       "href": "/work"
     },
@@ -96,7 +96,7 @@
       "title": "BRANDING",
       "imageSrc": "/images/services/branding.jpg",
       "imageAlt": "Branding",
-      "description": "Build a memorable brand identity that resonates with your audience and stands out in the market.",
+      "description": "Your brand should feel like you - we make sure it does.",
       "gradientOpacity": 20,
       "href": "/work"
     },
@@ -105,7 +105,7 @@
       "title": "SOCIAL MEDIA MANAGEMENT",
       "imageSrc": "/images/services/social-media.jpg",
       "imageAlt": "Social Media Management",
-      "description": "Strategic content creation and community management that grows your presence and connects with your audience.",
+      "description": "Content that actually connects with the people you're trying to reach.",
       "gradientOpacity": 0,
       "href": "/work"
     }
@@ -113,32 +113,32 @@
   "faqs": [
     {
       "id": 1,
-      "question": "WHAT KIND OF PROJECTS DO YOU TAKE ON?",
-      "answer": "From branding and social content to motion graphics and full channel management - we handle creative work that helps brands stand out online.",
+      "question": "WHAT MAKES STUDIO COBALT DIFFERENT?",
+      "answer": "We're storytellers first. A lot of agencies will give you something that looks good - we make sure it actually means something and gets results. We know what works, we know your market, and we'll be straight with you about what will make you competitive.",
       "defaultOpen": false
     },
     {
       "id": 2,
-      "question": "HOW LONG DOES A TYPICAL PROJECT TAKE?",
-      "answer": "Project timelines vary depending on scope, but most projects range from 2-6 weeks from concept to delivery.",
+      "question": "WHAT DOES A SHOOT LOOK LIKE WITH TEAM COBALT?",
+      "answer": "We keep it personal. Before anything goes in front of a camera, we get to know your brand, your people, and what you want to say. On the day, we handle everything - direction, styling, logistics - so you can just show up and be yourself. Afterwards, you get edited content ready to use.",
       "defaultOpen": false
     },
     {
       "id": 3,
-      "question": "DO YOU WORK WITH CLIENTS REMOTELY?",
-      "answer": "Yes! We work with clients all over the world. Our process is designed to be seamless whether you're local or remote.",
+      "question": "WHAT'S INCLUDED IN YOUR BRANDING SERVICE?",
+      "answer": "Every branding project is tailored, but typically includes strategy, logo design, colour palette, typography, and brand guidelines you can actually use.",
       "defaultOpen": false
     },
     {
       "id": 4,
-      "question": "WHAT'S YOUR PRICING STRUCTURE?",
-      "answer": "We offer custom quotes based on project scope and requirements. Get in touch for a detailed proposal tailored to your needs.",
+      "question": "WHAT KIND OF PROJECTS DO YOU TAKE ON?",
+      "answer": "Branding and content creation are our core, but we're always open to a conversation. If you've got a project and you're not sure where we fit, reach out - we'll figure it out together.",
       "defaultOpen": false
     },
     {
       "id": 5,
-      "question": "CAN WE SEE MORE OF YOUR WORK?",
-      "answer": "Absolutely! Check out our portfolio page to see our latest projects and case studies across various industries.",
+      "question": "WHAT DO YOU NEED FROM US TO KICK OFF?",
+      "answer": "A rough idea of what you're after is always a great starting point - even if it's just a feeling or a direction. But if you're not there yet, don't worry. That's what the first conversation is for, and we're good at helping you find it.",
       "defaultOpen": false
     }
   ],
