@@ -3,9 +3,10 @@
     "backgroundImageSrc": "/images/backgrounds/about-header.png",
     "backgroundImageAlt": "Studio setup background",
     "paragraphs": [
-      "We're storytellers, strategists, and creatives obsessed with making content that connects.",
-      "Two of us live for the craft, one of us makes sure it all actually works - understanding the business, connecting the dots, and keeping everything moving in the right direction.",
-      "We put our heads together because we want to build something worth telling. If you've got a vision, we'd love to hear it."
+      "We're storytellers, strategists, and creatives - obsessed with making work that actually means something. We come from production, design, and product, which means we understand your brand, your audience, and how to bring the two together.",
+      "Leo has directed and produced content across some of the most visually demanding industries out there - from luxury hospitality to the fast-moving world of crypto and finance.",
+      "Amanda brings a rare combination of design craft and technical depth - a master's in creative computing on top of years building brands, design systems, and products across fintech, Web3, gaming, and edtech.",
+      "Nikita has spent her career at the intersection of product, marketing, and ops. She's the one who holds it all together - coordinating moving parts, keeping things on track, and making sure every project lands the way it should."
     ],
     "primaryAction": {
       "label": "WATCH US WORK",
@@ -21,12 +22,12 @@
     "subheadline": "Let's get your story out there!",
     "buttons": [
       {
-        "label": "SERVICES",
+        "label": "OUR WORKS",
         "href": "/work",
         "variant": "secondary"
       },
       {
-        "label": "WHATSAPP US!",
+        "label": "CONTACT US!",
         "href": "/contact",
         "variant": "primary",
         "iconSrc": "/icons/whatsapp.svg",
