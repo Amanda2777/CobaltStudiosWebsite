@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Button from "@/components/Button";
 import Navigation from "@/components/Navigation";
-import { about } from "@/lib/about";
+import { getAboutContent } from "@/lib/about";
 
 export const metadata: Metadata = {
   title: "About",
@@ -27,7 +27,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function About() {
+export default async function About() {
+  const about = await getAboutContent();
+
   return (
     <div className="min-h-screen bg-[#050505] text-white">
       <Navigation transparent />

@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Navigation from "@/components/Navigation";
-import { getWorkBySlug, works } from "@/lib/work";
+import { getWorkBySlugAsync, getAllWorks } from "@/lib/work";
 
 interface WorkDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
+  const works = await getAllWorks();
   return works.map((work) => ({ slug: work.slug }));
 }
 
@@ -16,7 +17,7 @@ export async function generateMetadata({
   params,
 }: WorkDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const work = getWorkBySlug(slug);
+  const work = await getWorkBySlugAsync(slug);
 
   if (!work) {
     return {
@@ -54,7 +55,7 @@ export async function generateMetadata({
 
 export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
   const { slug } = await params;
-  const work = getWorkBySlug(slug);
+  const work = await getWorkBySlugAsync(slug);
 
   const getRowHeight = (imageCount: number) => (imageCount === 1 ? 775 : 680);
 
