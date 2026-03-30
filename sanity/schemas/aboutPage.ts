@@ -4,70 +4,86 @@ export default defineType({
   name: "aboutPage",
   title: "About Page",
   type: "document",
+  fieldsets: [
+    { name: "hero", title: "Hero Section", options: { collapsible: true, collapsed: false } },
+    { name: "contactCta", title: "Contact CTA Section", options: { collapsible: true, collapsed: false } },
+  ],
   fields: [
-    // Hero
+    // --- Hero Section ---
     defineField({
       name: "heroBackgroundImage",
-      title: "Hero Background Image Path",
+      title: "Background Image Path",
       type: "string",
+      fieldset: "hero",
     }),
     defineField({
       name: "heroBackgroundImageAlt",
-      title: "Hero Background Image Alt",
+      title: "Background Image Alt Text",
       type: "string",
+      fieldset: "hero",
     }),
     defineField({
       name: "heroParagraphs",
-      title: "Hero Paragraphs",
+      title: "Paragraphs",
       type: "array",
+      fieldset: "hero",
       of: [{ type: "text" }],
     }),
     defineField({
       name: "primaryActionLabel",
-      title: "Primary Action Label",
+      title: "Button Label",
       type: "string",
+      fieldset: "hero",
     }),
     defineField({
       name: "primaryActionHref",
-      title: "Primary Action Link",
+      title: "Button Link",
       type: "string",
+      fieldset: "hero",
     }),
     defineField({
       name: "primaryActionIconSrc",
-      title: "Primary Action Icon Path",
+      title: "Button Icon Path",
       type: "string",
+      fieldset: "hero",
     }),
     defineField({
       name: "primaryActionIconAlt",
-      title: "Primary Action Icon Alt",
+      title: "Button Icon Alt Text",
       type: "string",
+      fieldset: "hero",
     }),
 
-    // CTA
+    // --- Contact CTA Section ---
     defineField({
       name: "ctaBackgroundImage",
-      title: "CTA Background Image Path",
+      title: "Background Image Path",
       type: "string",
+      fieldset: "contactCta",
     }),
     defineField({
       name: "ctaBackgroundImageAlt",
-      title: "CTA Background Image Alt",
+      title: "Background Image Alt Text",
       type: "string",
+      fieldset: "contactCta",
     }),
     defineField({
       name: "ctaHeadline",
-      title: "CTA Headline",
+      title: "Headline",
       type: "string",
+      fieldset: "contactCta",
     }),
     defineField({
       name: "ctaSubheadline",
-      title: "CTA Subheadline",
+      title: "Subheadline",
       type: "string",
+      fieldset: "contactCta",
     }),
     defineField({
       name: "ctaButtons",
-      title: "CTA Buttons",
+      title: "Buttons",
       type: "array",
+      fieldset: "contactCta",
       of: [
         {
           type: "object",

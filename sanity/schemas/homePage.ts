@@ -23,103 +23,42 @@ export default defineType({
   name: "homePage",
   title: "Home Page",
   type: "document",
+  fieldsets: [
+    { name: "hero", title: "Hero Section", options: { collapsible: true, collapsed: false } },
+    { name: "story", title: "Story Section", options: { collapsible: true, collapsed: false } },
+    { name: "services", title: "Services Section", options: { collapsible: true, collapsed: false } },
+    { name: "brands", title: "Brands Section", options: { collapsible: true, collapsed: false } },
+    { name: "faqs", title: "FAQs Section", options: { collapsible: true, collapsed: false } },
+    { name: "contactCta", title: "Contact CTA Section", options: { collapsible: true, collapsed: false } },
+  ],
   fields: [
-    // Hero
+    // --- Hero Section ---
     defineField({
       name: "heroTitlePrefix",
-      title: "Hero Title Prefix",
+      title: "Title Prefix",
       type: "string",
+      fieldset: "hero",
       initialValue: "WE ARE",
     }),
     defineField({
       name: "heroTitleSuffix",
-      title: "Hero Title Suffix",
+      title: "Title Suffix",
       type: "string",
+      fieldset: "hero",
       initialValue: "COBALT",
     }),
     defineField({
       name: "defaultActiveCaseStudyNumber",
       title: "Default Active Case Study Number",
       type: "number",
+      fieldset: "hero",
       initialValue: 1,
     }),
-
-    // See All Works
-    defineField({
-      name: "seeAllWorksLabel",
-      title: "See All Works Label",
-      type: "string",
-      initialValue: "SEE ALL WORKS",
-    }),
-
-    // Story Section
-    defineField({
-      name: "storyHeadline",
-      title: "Story Section Headline",
-      type: "text",
-    }),
-    defineField({
-      name: "storyButtons",
-      title: "Story Section Buttons",
-      type: "array",
-      of: [actionButton],
-    }),
-
-    // Brand Section
-    defineField({
-      name: "brandSectionTitle",
-      title: "Brand Section Title",
-      type: "string",
-    }),
-    defineField({
-      name: "brandRepeatCount",
-      title: "Brand Logo Repeat Count",
-      type: "number",
-      initialValue: 3,
-    }),
-
-    // FAQ Section
-    defineField({
-      name: "faqSectionTitle",
-      title: "FAQ Section Title",
-      type: "string",
-      initialValue: "FAQs",
-    }),
-
-    // Contact CTA
-    defineField({
-      name: "contactCtaBackgroundImage",
-      title: "Contact CTA Background Image",
-      type: "string",
-      description: "Path to the background image (e.g. /images/backgrounds/contact-cta.jpg)",
-    }),
-    defineField({
-      name: "contactCtaBackgroundImageAlt",
-      title: "Contact CTA Background Image Alt",
-      type: "string",
-    }),
-    defineField({
-      name: "contactCtaHeadline",
-      title: "Contact CTA Headline",
-      type: "string",
-    }),
-    defineField({
-      name: "contactCtaSubheadline",
-      title: "Contact CTA Subheadline",
-      type: "string",
-    }),
-    defineField({
-      name: "contactCtaButtons",
-      title: "Contact CTA Buttons",
-      type: "array",
-      of: [actionButton],
-    }),
-
-    // Case Studies
     defineField({
       name: "caseStudies",
-      title: "Hero Case Studies",
+      title: "Case Studies",
       type: "array",
+      fieldset: "hero",
       of: [
         {
           type: "object",
@@ -136,12 +75,35 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: "seeAllWorksLabel",
+      title: "See All Works Label",
+      type: "string",
+      fieldset: "hero",
+      initialValue: "SEE ALL WORKS",
+    }),
 
-    // Services
+    // --- Story Section ---
+    defineField({
+      name: "storyHeadline",
+      title: "Headline",
+      type: "text",
+      fieldset: "story",
+    }),
+    defineField({
+      name: "storyButtons",
+      title: "Buttons",
+      type: "array",
+      fieldset: "story",
+      of: [actionButton],
+    }),
+
+    // --- Services Section ---
     defineField({
       name: "services",
       title: "Services",
       type: "array",
+      fieldset: "services",
       of: [
         {
           type: "object",
@@ -159,11 +121,51 @@ export default defineType({
       ],
     }),
 
-    // FAQs
+    // --- Brands Section ---
+    defineField({
+      name: "brandSectionTitle",
+      title: "Section Title",
+      type: "string",
+      fieldset: "brands",
+    }),
+    defineField({
+      name: "brandRepeatCount",
+      title: "Logo Repeat Count",
+      type: "number",
+      fieldset: "brands",
+      initialValue: 3,
+    }),
+    defineField({
+      name: "brandLogos",
+      title: "Logos",
+      type: "array",
+      fieldset: "brands",
+      of: [
+        {
+          type: "object",
+          name: "brandLogo",
+          title: "Brand Logo",
+          fields: [
+            defineField({ name: "src", title: "Logo Path", type: "string", validation: (r) => r.required() }),
+            defineField({ name: "alt", title: "Alt Text", type: "string", validation: (r) => r.required() }),
+          ],
+        },
+      ],
+    }),
+
+    // --- FAQs Section ---
+    defineField({
+      name: "faqSectionTitle",
+      title: "Section Title",
+      type: "string",
+      fieldset: "faqs",
+      initialValue: "FAQs",
+    }),
     defineField({
       name: "faqs",
       title: "FAQs",
       type: "array",
+      fieldset: "faqs",
       of: [
         {
           type: "object",
@@ -178,22 +180,38 @@ export default defineType({
       ],
     }),
 
-    // Brand Logos
+    // --- Contact CTA Section ---
     defineField({
-      name: "brandLogos",
-      title: "Brand Logos",
+      name: "contactCtaBackgroundImage",
+      title: "Background Image",
+      type: "string",
+      fieldset: "contactCta",
+      description: "Path to the background image (e.g. /images/backgrounds/contact-cta.jpg)",
+    }),
+    defineField({
+      name: "contactCtaBackgroundImageAlt",
+      title: "Background Image Alt Text",
+      type: "string",
+      fieldset: "contactCta",
+    }),
+    defineField({
+      name: "contactCtaHeadline",
+      title: "Headline",
+      type: "string",
+      fieldset: "contactCta",
+    }),
+    defineField({
+      name: "contactCtaSubheadline",
+      title: "Subheadline",
+      type: "string",
+      fieldset: "contactCta",
+    }),
+    defineField({
+      name: "contactCtaButtons",
+      title: "Buttons",
       type: "array",
-      of: [
-        {
-          type: "object",
-          name: "brandLogo",
-          title: "Brand Logo",
-          fields: [
-            defineField({ name: "src", title: "Logo Path", type: "string", validation: (r) => r.required() }),
-            defineField({ name: "alt", title: "Alt Text", type: "string", validation: (r) => r.required() }),
-          ],
-        },
-      ],
+      fieldset: "contactCta",
+      of: [actionButton],
     }),
   ],
   preview: {
