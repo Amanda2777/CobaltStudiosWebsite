@@ -57,11 +57,12 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
   const { slug } = await params;
   const work = await getWorkBySlugAsync(slug);
 
-  const getRowHeight = (imageCount: number) => (imageCount === 1 ? 775 : 680);
-
   if (!work) {
     notFound();
   }
+
+  const hasTopRow = work.workGridImage || work.topImage;
+  const hasVideos = work.vimeoIds && work.vimeoIds.length > 0;
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
@@ -89,59 +90,134 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
         </header>
 
         <section className="space-y-0">
-          {/* Mobile: force all images into one vertical list. */}
+          {/* ── Mobile: stack everything vertically ── */}
           <div className="md:hidden">
-            {work.detailRows.flatMap((row, rowIndex) =>
-              row.images.map((image, imageIndex) => (
-                <div
-                  key={`${work.slug}-mobile-row-${rowIndex}-image-${imageIndex}`}
-                  className="relative w-full"
-                  style={{ height: `${getRowHeight(row.images.length)}px` }}
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    sizes="100vw"
-                    className="object-cover"
-                    priority={rowIndex === 0 && imageIndex < 2}
+            {work.workGridImage && (
+              <div className="relative w-full" style={{ height: "680px" }}>
+                <Image
+                  src={work.workGridImage}
+                  alt={work.clientName}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            )}
+            {work.topImage && (
+              <div className="relative w-full" style={{ height: "680px" }}>
+                <Image
+                  src={work.topImage}
+                  alt={`${work.clientName} detail`}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                />
+              </div>
+            )}
+            {hasVideos &&
+              work.vimeoIds!.map((id, i) => (
+                <div key={i} className="relative w-full overflow-hidden" style={{ height: "680px" }}>
+                  <iframe
+                    src={`https://player.vimeo.com/video/${id}?badge=0&autopause=0&player_id=0&app_id=58479`}
+                    className="absolute inset-0 w-full h-full"
+                    style={{ border: "none" }}
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                    allowFullScreen
+                    title={`${work.clientName} video ${i + 1}`}
                   />
                 </div>
-              ))
+              ))}
+            {work.coverImage && (
+              <div className="relative w-full" style={{ height: "775px" }}>
+                <Image
+                  src={work.coverImage}
+                  alt={`${work.clientName} cover`}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                />
+              </div>
             )}
           </div>
 
-          {/* Desktop: preserve row/column layout from JSON. */}
+          {/* ── Desktop: 3-section layout ── */}
           <div className="hidden md:block">
-            {work.detailRows.map((row, rowIndex) => (
+            {/* Row 1: grid image + top image */}
+            {hasTopRow && (
               <div
-                key={`${work.slug}-row-${rowIndex}`}
                 className="grid gap-0"
                 style={{
-                  gridTemplateColumns: `repeat(${row.images.length}, minmax(0, 1fr))`,
-                  height: `${getRowHeight(row.images.length)}px`,
+                  gridTemplateColumns:
+                    work.workGridImage && work.topImage ? "1fr 1fr" : "1fr",
+                  height: "680px",
                 }}
               >
-                {row.images.map((image, imageIndex) => (
-                  <div
-                    key={`${work.slug}-row-${rowIndex}-image-${imageIndex}`}
-                    className="relative w-full h-full"
-                  >
+                {work.workGridImage && (
+                  <div className="relative w-full h-full">
                     <Image
-                      src={image.src}
-                      alt={image.alt}
+                      src={work.workGridImage}
+                      alt={work.clientName}
                       fill
-                      sizes="100vw"
+                      sizes="50vw"
                       className="object-cover"
-                      priority={rowIndex === 0}
+                      priority
+                    />
+                  </div>
+                )}
+                {work.topImage && (
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={work.topImage}
+                      alt={`${work.clientName} detail`}
+                      fill
+                      sizes="50vw"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Row 2: Vimeo video frames */}
+            {hasVideos && (
+              <div
+                className="grid gap-0"
+                style={{
+                  gridTemplateColumns: `repeat(${work.vimeoIds!.length}, 1fr)`,
+                  height: "680px",
+                }}
+              >
+                {work.vimeoIds!.map((id, i) => (
+                  <div key={i} className="relative w-full h-full overflow-hidden">
+                    <iframe
+                      src={`https://player.vimeo.com/video/${id}?badge=0&autopause=0&player_id=0&app_id=58479`}
+                      className="absolute inset-0 w-full h-full"
+                      style={{ border: "none" }}
+                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                      allowFullScreen
+                      title={`${work.clientName} video ${i + 1}`}
                     />
                   </div>
                 ))}
               </div>
-            ))}
+            )}
+
+            {/* Row 3: cover image (full width) */}
+            {work.coverImage && (
+              <div className="relative w-full" style={{ height: "775px" }}>
+                <Image
+                  src={work.coverImage}
+                  alt={`${work.clientName} cover`}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                />
+              </div>
+            )}
           </div>
         </section>
-
       </main>
     </div>
   );

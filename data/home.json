@@ -28,7 +28,7 @@
     "title": "FAQs"
   },
   "contactCta": {
-    "backgroundImageSrc": "/images/backgrounds/contact-cta.jpg",
+    "backgroundImageSrc": "/images/backgrounds/hello_bg.png",
     "backgroundImageAlt": "Contact background",
     "headline": "ALL GREAT IDEAS START WITH HELLO",
     "subheadline": "Let's get your story out there!",
@@ -50,35 +50,39 @@
   "caseStudies": [
     {
       "number": 1,
-      "clientName": "CLIENT NAME",
-      "projectName": "PROJECT NAME",
+      "clientName": "Spotted Cow",
+      "projectName": "Table for Two",
       "imageSrc": "/images/case-studies/project-1.png",
       "imageAlt": "Project 1",
-      "videoSrc": "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/pizza.mp4"
+      "videoSrc": "https://pub-1ec42cf347284532910f7cc6a8fb640d.r2.dev/Cow-3.mp4",
+      "href": "/work/spotted-cow"
     },
     {
       "number": 2,
-      "clientName": "CLIENT NAME",
-      "projectName": "PROJECT NAME",
+      "clientName": "MD Diamonds",
+      "projectName": "The Whole Carat",
       "imageSrc": "/images/case-studies/project-2.png",
       "imageAlt": "Project 2",
-      "videoSrc": "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/jewelry.mp4"
+      "videoSrc": "https://pub-1ec42cf347284532910f7cc6a8fb640d.r2.dev/1.mp4",
+      "href": "/work/mddiamonds"
     },
     {
       "number": 3,
-      "clientName": "CLIENT NAME",
-      "projectName": "PROJECT NAME",
-      "imageSrc": "/images/case-studies/project-3.png",
+      "clientName": "Tenby Cars",
+      "projectName": "Miles Ahead",
+      "imageSrc": "/images/case-studies/project-3.jpg",
       "imageAlt": "Project 3",
-      "videoSrc": "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/watch.mp4"
+      "videoSrc": "https://pub-1ec42cf347284532910f7cc6a8fb640d.r2.dev/Tenby%206.mp4",
+      "href": "/work/tenby"
     },
     {
       "number": 4,
-      "clientName": "CLIENT NAME",
-      "projectName": "PROJECT NAME",
-      "imageSrc": "/images/case-studies/project-4.jpg",
+      "clientName": "Ballers Club",
+      "projectName": "Game Day",
+      "imageSrc": "/images/case-studies/project-4.png",
       "imageAlt": "Project 4",
-      "videoSrc": "https://pub-b65a0b780e3745cc8b30743c522a6f8c.r2.dev/videos/soloskin.mp4"
+      "videoSrc": "https://pub-1ec42cf347284532910f7cc6a8fb640d.r2.dev/Ballers%203.mp4",
+      "href": "/work/ballers"
     }
   ],
   "services": [

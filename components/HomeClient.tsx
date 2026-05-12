@@ -24,7 +24,7 @@ export default function HomeClient({ content }: HomeClientProps) {
   const caseStudies = content.caseStudies;
   const services = content.services;
   const faqs = content.faqs;
-  const brandLogos = content.brandLogos;
+
 
   const activeCaseStudyNumber =
     hoveredCard ?? content.hero.defaultActiveCaseStudyNumber;
@@ -171,6 +171,7 @@ export default function HomeClient({ content }: HomeClientProps) {
             projectName={study.projectName}
             imageSrc={study.imageSrc}
             imageAlt={study.imageAlt}
+            href={study.href}
             isHovered={hoveredCard === study.number}
             isDimmed={hoveredCard !== null && hoveredCard !== study.number}
             onHoverStart={() => setHoveredCard(study.number)}
@@ -225,8 +226,8 @@ export default function HomeClient({ content }: HomeClientProps) {
 
       {/* Lower Content Container */}
       <div className="flex flex-col items-center px-4 md:px-20 gap-2.5 relative mx-auto">
-        {/* Brand Logos */}
-        <section className="flex flex-col justify-center items-center py-12 md:py-50 gap-6 md:gap-9 w-full max-w-[793px] mb-8 md:mb-16">
+        {/* Brand Logos — hidden for now, re-enable when ready */}
+        {/* <section className="flex flex-col justify-center items-center py-12 md:py-50 gap-6 md:gap-9 w-full max-w-[793px] mb-8 md:mb-16">
           <p className="text-base md:text-xl text-center text-white/40">
             {content.brandSection.title}
           </p>
@@ -254,7 +255,7 @@ export default function HomeClient({ content }: HomeClientProps) {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* FAQs */}
         <section className="flex flex-col items-start pb-12 md:pb-50 gap-8 md:gap-15 w-full max-w-[900px] mb-8 md:mb-16 px-4">
