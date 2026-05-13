@@ -20,6 +20,9 @@ export interface WorkEntry {
   title: string;
   teaser: string;
   workGridImage: string;
+  topImage?: string;
+  coverImage?: string;
+  vimeoIds?: string[];
   detailRows: WorkImageRow[];
 }
 
@@ -39,6 +42,9 @@ function mapSanityWork(data: Record<string, unknown>, index: number): WorkEntry 
     title: data.title as string,
     teaser: data.teaser as string,
     workGridImage: data.workGridImage as string,
+    topImage: data.topImage as string | undefined,
+    coverImage: data.coverImage as string | undefined,
+    vimeoIds: data.vimeoIds as string[] | undefined,
     detailRows: data.detailRows as WorkImageRow[],
   };
 }

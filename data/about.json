@@ -1,12 +1,13 @@
 {
   "hero": {
-    "backgroundImageSrc": "/images/backgrounds/about-header.png",
+    "backgroundImageSrc": "/images/backgrounds/contact_bg.png",
     "backgroundImageAlt": "Studio setup background",
     "paragraphs": [
-      "We are storytellers, strategists, creatives - we think about your brand, your audience, and how to bring the two together.",
-      "Leo directs and produces across luxury hospitality, crypto, and finance. Amanda builds brands, systems, and products across fintech, Web3, gaming, and edtech. Nikita brings product, marketing, and ops together to make sure every project lands.",
-      "We'd love to hear what you're working on."
-    ],
+  "A small creative studio built around direction, design, and delivery.",
+  "Leo directs and produces. Amanda builds brands and products. Nikita keeps everything moving. Noodle supervises.",
+  "We work with founders and brands who know what they want to say but need the right team to say it."
+],
+
     "primaryAction": {
       "label": "WATCH US WORK",
       "href": "https://www.instagram.com/cobalt.made/",
@@ -15,7 +16,7 @@
     }
   },
   "cta": {
-    "backgroundImageSrc": "/images/backgrounds/contact-cta.jpg",
+    "backgroundImageSrc": "/images/backgrounds/hello_bg.png",
     "backgroundImageAlt": "Contact background",
     "headline": "ALL GREAT IDEAS START WITH HELLO",
     "subheadline": "Let's get your story out there!",

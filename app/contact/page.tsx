@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Navigation from '@/components/Navigation';
 
@@ -17,7 +18,15 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-[#050505] text-[#F2F2F2]">
+    <div className="relative min-h-screen text-[#F2F2F2]">
+      <Image
+        src="/images/backgrounds/contactus_bg.png"
+        alt="Contact background"
+        fill
+        className="object-cover"
+        priority
+      />
+      <div className="relative z-10">
       <Navigation transparent />
 
       <main className="w-full max-w-[1536px] mx-auto pt-[124px] md:pt-0">
@@ -60,6 +69,7 @@ export default function Contact() {
           </div>
         </section>
       </main>
+      </div>
     </div>
   );
 }

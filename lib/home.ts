@@ -9,6 +9,7 @@ export interface HomeCaseStudy {
   imageSrc: string;
   imageAlt: string;
   videoSrc: string;
+  href?: string;
 }
 
 export interface HomeService {

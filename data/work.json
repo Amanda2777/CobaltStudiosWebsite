@@ -3,162 +3,114 @@
     {
       "id": 1,
       "slug": "soloskin",
-      "clientName": "SOLOSKIN",
+      "clientName": "SOLO SKIN",
       "year": "2025",
-      "service": "CREATIVE PRODUCTION",
-      "title": "Exosome launch campaign",
-      "teaser": "Clinical skincare launch campaign across product stills, talent portraits, and lab storytelling assets.",
-      "workGridImage": "/images/case-studies/project-4.jpg",
-      "detailRows": [
-        {
-          "images": [
-            {
-              "src": "/images/case-studies/project-1.png",
-              "alt": "SoloSkin campaign moodboard"
-            },
-            {
-              "src": "/images/case-studies/project-4.jpg",
-              "alt": "Model portrait with SoloSkin product"
-            }
-          ]
-        },
-        {
-          "images": [
-            {
-              "src": "/images/services/branding.jpg",
-              "alt": "Product splash visual"
-            },
-            {
-              "src": "/images/services/social-media.jpg",
-              "alt": "Behind the scenes studio portrait"
-            },
-            {
-              "src": "/images/case-studies/project-2.png",
-              "alt": "Lab scene with serum sample"
-            }
-          ]
-        },
-        {
-          "images": [
-            {
-              "src": "/images/hero/hero-main.jpg",
-              "alt": "SoloSkin hero key visual"
-            }
-          ]
-        }
-      ]
+      "service": "CREATIVE PRODUCION & SOCIALS",
+      "title": "Campaign production",
+      "teaser": "Product photography, the founder's story, and a social content bank for a skincare launch.",
+      "workGridImage": "/images/case-studies/solo-grid.png",
+      "topImage": "/images/case-studies/solo_top.jpg",
+      "coverImage": "/images/case-studies/solo_cover.jpg",
+      "vimeoIds": ["1191515967", "1191516034", "1191516019"],
+      "detailRows": []
     },
     {
       "id": 2,
-      "slug": "lumin",
-      "clientName": "LUMIN",
+      "slug": "leto",
+      "clientName": "L'ETO CLINIC",
       "year": "2025",
-      "service": "BRANDING",
-      "title": "Brand refresh",
-      "teaser": "Positioning and identity visuals crafted for an elevated digital-first cosmetics label.",
-      "workGridImage": "/images/case-studies/project-1.png",
-      "detailRows": [
-        {
-          "images": [
-            {
-              "src": "/images/case-studies/project-1.png",
-              "alt": "LUMIN brand system collage"
-            },
-            {
-              "src": "/images/services/creative-production.jpg",
-              "alt": "LUMIN campaign portrait"
-            }
-          ]
-        },
-        {
-          "images": [
-            {
-              "src": "/images/services/social-media.jpg",
-              "alt": "Social content direction"
-            },
-            {
-              "src": "/images/case-studies/project-3.png",
-              "alt": "Packaging and texture studies"
-            }
-          ]
-        },
-        {
-          "images": [
-            {
-              "src": "/images/services/branding.jpg",
-              "alt": "LUMIN product hero render"
-            }
-          ]
-        }
-      ]
+      "service": "CREATIVE PRODUCION & SOCIALS",
+      "title": "Launch campaign",
+      "teaser": "Photography across treatments, staff, and clinic spaces. Delivered as a full social content bank and website imagery for a clinic rebrand.",
+      "workGridImage": "/images/case-studies/leto_top.png",
+      "topImage": "",
+      "coverImage": "/images/case-studies/letoCover.jpg",
+      "vimeoIds": ["1191516075", "1191516066", "1191516070"],
+      "detailRows": []
     },
     {
       "id": 3,
-      "slug": "clara",
-      "clientName": "CLARA",
+      "slug": "spotted-cow",
+      "clientName": "SPOTTED COW",
       "year": "2024",
-      "service": "SOCIAL MEDIA",
-      "title": "Always-on social",
-      "teaser": "A full-funnel social content engine combining UGC, studio shoots, and ad-ready motion stills.",
-      "workGridImage": "/images/case-studies/project-2.png",
-      "detailRows": [
-        {
-          "images": [
-            {
-              "src": "/images/case-studies/project-2.png",
-              "alt": "CLARA social grid preview"
-            },
-            {
-              "src": "/images/case-studies/project-3.png",
-              "alt": "CLARA studio frame"
-            },
-            {
-              "src": "/images/services/branding.jpg",
-              "alt": "CLARA product still life"
-            }
-          ]
-        },
-        {
-          "images": [
-            {
-              "src": "/images/services/creative-production.jpg",
-              "alt": "CLARA campaign portrait"
-            }
-          ]
-        }
-      ]
+      "service": "CREATIVE PRODUCION & SOCIALS",
+      "title": "Social content strategy",
+      "teaser": "On-location shoot covering food, drinks, and the restaurant interior. Social and digital marketing content bank.",
+      "workGridImage": "/images/case-studies/SpottedCow_top.jpg",
+      "topImage": "/images/case-studies/Cow_grid.png",
+      "coverImage": "/images/case-studies/SpottedCow_cover.jpg",
+      "vimeoIds": ["1191516121", "1191516113", "1191516137"],
+      "detailRows": []
     },
     {
       "id": 4,
-      "slug": "northline",
-      "clientName": "NORTHLINE",
+      "slug": "brunch",
+      "clientName": "BRUNCH AND NUNCH",
       "year": "2024",
-      "service": "CREATIVE PRODUCTION",
-      "title": "Commercial campaign",
-      "teaser": "High-impact ad creative for product drops, launch films, and paid social formats.",
-      "workGridImage": "/images/case-studies/project-3.png",
-      "detailRows": [
-        {
-          "images": [
-            {
-              "src": "/images/case-studies/project-3.png",
-              "alt": "Northline campaign still"
-            },
-            {
-              "src": "/images/case-studies/project-4.jpg",
-              "alt": "Northline portrait capture"
-            }
-          ]
-        },
-        {
-          "images": [
-            {
-              "src": "/images/hero/hero-main.jpg",
-              "alt": "Northline hero frame"
-            }
-          ]
-        }
-      ]
+      "service": "CREATIVE PRODUCION & SOCIALS",
+      "title": "Lifestyle campaign",
+      "teaser": "Food and venue photography with short-form video content. Built as a ready-to-post social bank.",
+      "workGridImage": "/images/case-studies/brunch_grid.png",
+      "topImage": "/images/case-studies/Brunch_top.jpg",
+      "coverImage": "/images/case-studies/Brunch_cover.jpg",
+      "vimeoIds": ["1191516106", "1191516093", "1191516105"],
+      "detailRows": []
+    },
+    {
+      "id": 5,
+      "slug": "optera",
+      "clientName": "OPTERA",
+      "year": "2025",
+      "service": "CREATIVE PRODUCION & SOCIALS",
+      "title": "Brand identity",
+      "teaser": "Campaign photography and social content for a men's journalling product. Imagery focused on everyday use and lifestyle context.",
+      "workGridImage": "/images/case-studies/optera_cover.jpg",
+      "topImage": "/images/case-studies/optera_top.jpg",
+      "coverImage": "/images/case-studies/optera_cover.jpg",
+      "vimeoIds": ["1191515909", "1191515908", "1191515907"],
+      "detailRows": []
+    },
+    {
+      "id": 6,
+      "slug": "mddiamonds",
+      "clientName": "MD DIAMONDS",
+      "year": "2024",
+      "service": "CREATIVE PRODUCION & SOCIALS",
+      "title": "Luxury brand identity",
+      "teaser": "Product photography for jewellery across e-commerce and social. Close detail shots and lifestyle pairings delivered as a full content set.",
+      "workGridImage": "/images/case-studies/diamonds_grid.png",
+      "topImage": "/images/case-studies/MDDiamond_top.jpg",
+      "coverImage": "/images/case-studies/MDDiamonds_cover.jpg",
+      "vimeoIds": ["1191515865", "1191515864", "1191515869" ],
+      "detailRows": []
+    },
+    {
+      "id": 7,
+      "slug": "tenby",
+      "clientName": "TENBY CARS",
+      "year": "2024",
+      "service": "BCREATIVE PRODUCION & SOCIALS",
+      "title": "Brand and campaign creative",
+      "teaser": "Location-based photography of the vehicle fleet for use across social and the website.",
+      "workGridImage": "/images/case-studies/tenby_top.png",
+      "topImage": "/images/case-studies/tenby_grid.png",
+      "coverImage": "/images/case-studies/tenby_cover.png",
+      "vimeoIds": ["1191519926", "1191519960", "1191519969"],
+      "detailRows": []
+    },
+    {
+      "id": 8,
+      "slug": "ballers",
+      "clientName": "BALLERS CLUB",
+      "year": "2025",
+      "service": "CREATIVE PRODUCION & SOCIALS",
+      "title": "Always-on social",
+      "teaser": "Photography and video content covering training sessions, events, and club culture. Delivered as an ongoing social media bank.",
+      "workGridImage": "/images/case-studies/ballers_grid.png",
+      "topImage": "/images/case-studies/Ballers_top.jpg",
+      "coverImage": "/images/case-studies/Ballers_cover.jpg",
+      "vimeoIds": ["1191519931", "1191519928", "1191519927"],
+      "detailRows": []
     }
   ]
 }

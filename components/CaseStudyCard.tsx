@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface CaseStudyCardProps {
   number: number;
@@ -6,6 +7,7 @@ interface CaseStudyCardProps {
   projectName: string;
   imageSrc: string;
   imageAlt: string;
+  href?: string;
   isHovered?: boolean;
   isDimmed?: boolean;
   onHoverStart?: () => void;
@@ -18,13 +20,15 @@ export default function CaseStudyCard({
   projectName,
   imageSrc,
   imageAlt,
+  href,
   isHovered = false,
   isDimmed = false,
   onHoverStart,
   onHoverEnd,
 }: CaseStudyCardProps) {
   return (
-    <div
+    <Link
+      href={href ?? "/work"}
       className="flex flex-col items-start flex-1 relative cursor-pointer"
       onMouseEnter={onHoverStart}
       onMouseLeave={onHoverEnd}
@@ -66,6 +70,6 @@ export default function CaseStudyCard({
           className="object-cover"
         />
       </div>
-    </div>
+    </Link>
   );
 }
