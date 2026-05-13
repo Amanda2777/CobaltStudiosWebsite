@@ -45,6 +45,9 @@ export const allWorksQuery = groq`*[_type == "workProject"] | order(sortOrder as
   service,
   teaser,
   workGridImage,
+  topImage,
+  coverImage,
+  vimeoIds,
   sortOrder,
   detailRows[]{
     images[]{src, alt}
@@ -60,6 +63,9 @@ export const workBySlugQuery = groq`*[_type == "workProject" && slug.current == 
   service,
   teaser,
   workGridImage,
+  topImage,
+  coverImage,
+  vimeoIds,
   sortOrder,
   detailRows[]{
     images[]{src, alt}

@@ -95,7 +95,13 @@ async function migrate() {
     caseStudies: home.caseStudies.map((cs) => ({
       _type: "caseStudy",
       _key: `cs-${cs.number}`,
-      ...cs,
+      number: cs.number,
+      clientName: cs.clientName,
+      projectName: cs.projectName,
+      imageSrc: cs.imageSrc,
+      imageAlt: cs.imageAlt,
+      videoSrc: cs.videoSrc,
+      href: cs.href,
     })),
     services: home.services.map((s) => ({
       _type: "service",
@@ -161,6 +167,9 @@ async function migrate() {
       service: w.service,
       teaser: w.teaser,
       workGridImage: w.workGridImage,
+      topImage: w.topImage || "",
+      coverImage: w.coverImage || "",
+      vimeoIds: w.vimeoIds || [],
       sortOrder: w.id,
       detailRows: w.detailRows.map((row, ri) => ({
         _type: "imageRow",

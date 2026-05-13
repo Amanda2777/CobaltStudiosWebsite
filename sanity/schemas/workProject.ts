@@ -43,7 +43,26 @@ export default defineType({
       name: "workGridImage",
       title: "Work Grid Image Path",
       type: "string",
-      description: "Image shown in the work grid (e.g. /images/case-studies/project-4.jpg)",
+      description: "Image shown in the work grid and as the left image on the detail page",
+    }),
+    defineField({
+      name: "topImage",
+      title: "Top Image Path",
+      type: "string",
+      description: "Right image in the first row of the detail page",
+    }),
+    defineField({
+      name: "coverImage",
+      title: "Cover Image Path",
+      type: "string",
+      description: "Full-width image at the bottom of the detail page",
+    }),
+    defineField({
+      name: "vimeoIds",
+      title: "Vimeo Video IDs",
+      type: "array",
+      of: [{ type: "string" }],
+      description: "Up to 3 Vimeo video IDs — renders as side-by-side frames between the images",
     }),
     defineField({
       name: "sortOrder",

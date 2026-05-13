@@ -71,6 +71,7 @@ export default defineType({
             defineField({ name: "imageSrc", title: "Image Path", type: "string" }),
             defineField({ name: "imageAlt", title: "Image Alt Text", type: "string" }),
             defineField({ name: "videoSrc", title: "Video URL", type: "url" }),
+            defineField({ name: "href", title: "Link to Case Study", type: "string" }),
           ],
         },
       ],
