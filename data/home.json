@@ -28,7 +28,7 @@
     "title": "FAQs"
   },
   "contactCta": {
-    "backgroundImageSrc": "/images/backgrounds/hello_bg.png",
+    "backgroundImageSrc": "/images/backgrounds/hello.jpg",
     "backgroundImageAlt": "Contact background",
     "headline": "ALL GREAT IDEAS START WITH HELLO",
     "subheadline": "Let's get your story out there!",
@@ -40,8 +40,9 @@
       },
       {
         "label": "CONTACT US!",
-        "href": "/contact",
+        "href": "https://wa.me/36204189003",
         "variant": "primary",
+        "openInNewTab": true,
         "iconSrc": "/icons/whatsapp.svg",
         "iconAlt": "WhatsApp"
       }
@@ -89,60 +90,63 @@
     {
       "id": 1,
       "title": "CREATIVE PRODUCTION",
-      "imageSrc": "/images/services/creative-production.jpg",
+      "imageSrc": "/images/services/cpcover.jpg",
       "imageAlt": "Creative Production",
-      "description": "We bring ideas to life, from the first conversation to the final frame.",
+      "description": "From concept to final cut, we handle the entire pipeline under one roof. We script, direct, shoot, and edit content that hooks your audience and drives results.",
       "gradientOpacity": 60,
-      "href": "/work"
+      "href": "/work",
+      "videoSrc": "https://pub-1ec42cf347284532910f7cc6a8fb640d.r2.dev/cp.MOV"
     },
     {
       "id": 2,
-      "title": "BRANDING",
-      "imageSrc": "/images/services/branding.jpg",
+      "title": "BRANDING & STRATEGY",
+      "imageSrc": "/images/services/lifestyle 2.jpg",
       "imageAlt": "Branding",
-      "description": "Your brand should feel like you - we make sure it does.",
+      "description": "A brand is more than a logo. We help you figure out what you actually stand for, how to say it, and how to make it consistent everywhere it shows up.",
       "gradientOpacity": 20,
-      "href": "/work"
+      "href": "/work",
+      "videoSrc": "https://pub-1ec42cf347284532910f7cc6a8fb640d.r2.dev/Optera%20base_v1.mov"
     },
     {
       "id": 3,
       "title": "SOCIAL MEDIA MANAGEMENT",
-      "imageSrc": "/images/services/social-media.jpg",
+      "imageSrc": "/images/services/smmanage.png",
       "imageAlt": "Social Media Management",
-      "description": "Content that actually connects with the people you're trying to reach.",
+      "description": "Content that fits the platform, fits the brand, and actually gets watched. We manage your social presence end to end - strategy, creation, and scheduling - so you can focus on everything else.",
       "gradientOpacity": 0,
-      "href": "/work"
+      "href": "/work",
+      "videoSrc": "https://pub-1ec42cf347284532910f7cc6a8fb640d.r2.dev/F9A4916E-BFD0-466F-AFFE-CDCDFD924DF1.MP4"
     }
   ],
   "faqs": [
     {
       "id": 1,
-      "question": "WHAT MAKES STUDIO COBALT DIFFERENT?",
-      "answer": "We're storytellers first. A lot of agencies will give you something that looks good - we make sure it actually means something and gets results. We know what works, we know your market, and we'll be straight with you about what will make you competitive.",
+      "question": "WHAT KIND OF PROJECTS DO YOU TAKE ON?",
+      "answer": "Brand films, video ads, social content, branding, and strategy. We are a full service creative studio which means we handle everything from the initial concept and creative direction through to production, editing, and final delivery.",
       "defaultOpen": false
     },
     {
       "id": 2,
-      "question": "WHAT DOES A SHOOT LOOK LIKE WITH TEAM COBALT?",
-      "answer": "We keep it personal. Before anything goes in front of a camera, we get to know your brand, your people, and what you want to say. On the day, we handle everything - direction, styling, logistics - so you can just show up and be yourself. Afterwards, you get edited content ready to use.",
+      "question": "HOW DOES THE PROCESS WORK?",
+      "answer": "We like to start with a conversation. A short intro call to understand who you are and what you are trying to say. Once we are aligned on that, we put together a proposal and get to work. The whole process is built around you.",
       "defaultOpen": false
     },
     {
       "id": 3,
-      "question": "WHAT'S INCLUDED IN YOUR BRANDING SERVICE?",
-      "answer": "Every branding project is tailored, but typically includes strategy, logo design, colour palette, typography, and brand guidelines you can actually use.",
+      "question": "HOW MUCH DOES IT COST?",
+      "answer": "Every project is different and we scope everything individually to make sure you are only paying for what you actually need. Get in touch and we will find something that works.",
       "defaultOpen": false
     },
     {
       "id": 4,
-      "question": "WHAT KIND OF PROJECTS DO YOU TAKE ON?",
-      "answer": "Branding and content creation are our core, but we're always open to a conversation. If you've got a project and you're not sure where we fit, reach out - we'll figure it out together.",
+      "question": "HOW LONG DOES A PROJECT TAKE?",
+      "answer": "Most projects move from brief to delivery within two to four weeks. We work to timelines that make sense for your brand and always make sure you know exactly where things stand.",
       "defaultOpen": false
     },
     {
       "id": 5,
-      "question": "WHAT DO YOU NEED FROM US TO KICK OFF?",
-      "answer": "A rough idea of what you're after is always a great starting point - even if it's just a feeling or a direction. But if you're not there yet, don't worry. That's what the first conversation is for, and we're good at helping you find it.",
+      "question": "DO YOU WORK WITH BRANDS OUTSIDE THE UK?",
+      "answer": "Yes. We work with brands remotely and internationally. If the project is right, location is not a barrier.",
       "defaultOpen": false
     }
   ],

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Darker_Grotesque } from "next/font/google";
+import { Darker_Grotesque, Instrument_Serif } from "next/font/google";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
@@ -9,6 +9,13 @@ const darkerGrotesque = Darker_Grotesque({
   variable: "--font-darker-grotesque",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -85,7 +92,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${darkerGrotesque.variable} antialiased`}
+        className={`${darkerGrotesque.variable} ${instrumentSerif.variable} antialiased`}
       >
         <script
           type="application/ld+json"

@@ -84,6 +84,12 @@ export default function Navigation({ transparent = false }: NavigationProps) {
               WORK
             </Link>
             <Link
+              href="/services"
+              className="text-xl font-medium leading-none text-white hover:text-[#ABABAB] transition-colors"
+            >
+              SERVICES
+            </Link>
+            <Link
               href="/contact"
               className="text-xl font-medium leading-none text-white hover:text-[#ABABAB] transition-colors"
             >
@@ -166,11 +172,21 @@ export default function Navigation({ transparent = false }: NavigationProps) {
               WORK
             </Link>
             <Link
-              href="/contact"
+              href="/services"
               className={`text-5xl font-medium leading-none text-white transition-all duration-500 ${
                 isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: isMenuOpen ? "280ms" : "0ms" }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              SERVICES
+            </Link>
+            <Link
+              href="/contact"
+              className={`text-5xl font-medium leading-none text-white transition-all duration-500 ${
+                isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: isMenuOpen ? "360ms" : "0ms" }}
               onClick={() => setIsMenuOpen(false)}
             >
               CONTACT

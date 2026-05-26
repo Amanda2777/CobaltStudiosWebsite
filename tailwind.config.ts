@@ -16,6 +16,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-darker-grotesque)', 'sans-serif'],
+        serif: ['var(--font-instrument-serif)', 'serif'],
       },
       fontSize: {
         // Custom typography scale from Figma

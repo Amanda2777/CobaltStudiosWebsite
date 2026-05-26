@@ -20,6 +20,7 @@ export interface HomeService {
   description: string;
   gradientOpacity: number;
   href: string;
+  videoSrc?: string;
 }
 
 export interface HomeFaq {
@@ -40,6 +41,7 @@ export interface HomeActionButton {
   variant: "primary" | "secondary";
   iconSrc?: string;
   iconAlt?: string;
+  openInNewTab?: boolean;
 }
 
 export interface HomeContent {

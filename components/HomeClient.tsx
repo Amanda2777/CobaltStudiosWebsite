@@ -180,6 +180,93 @@ export default function HomeClient({ content }: HomeClientProps) {
         ))}
       </section>
 
+      {/* Story Section */}
+      <section className="w-full max-w-[1536px] mx-auto px-4 md:px-8 py-16 md:py-24">
+        <div className="mx-auto w-full max-w-[1142px]">
+          {/* Two-column text row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 mb-10 md:mb-12">
+            {/* Left: headline */}
+            <div>
+              <h2 className="text-4xl md:text-5xl leading-[0.9] tracking-tighter uppercase">
+              <span className="font-sans font-bold">THE STORY YOUR BRAND DESERVES.</span>
+              <span style={{ fontFamily: 'var(--font-instrument-serif)', fontWeight: 400, fontStyle: 'italic', textTransform: 'none' }}>Content that keeps them watching.</span>
+              </h2>
+            </div>
+
+            {/* Right: body + buttons */}
+            <div className="flex flex-col justify-center gap-8">
+              <p className="text-[1.5rem] text-[#B3B3B3] leading-tight w-full">
+                Most brands have a story worth telling. Most content never tells it properly. As a full-service creative studio, we make brand films, video ads, and social media content built to convert — keeping your vision intact and your marketing budget focused on results. </p>
+              <div className="flex flex-row items-center gap-4">
+                <Button href="/contact" variant="primary">CONTACT US</Button>
+                <Button href="#services" variant="secondary">SERVICES</Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Full-width image */}
+          <div className="relative w-full h-[200px] md:h-[300px] overflow-hidden">
+            <Image
+              src="/images/backgrounds/aboutbackground.jpg"
+              alt="Story section"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Categories */}
+      <section className="w-full max-w-[1536px] mx-auto px-4 md:px-8 py-8 md:py-12">
+        {[
+          [
+            { label: "Lifestyle",      img: "/images/story/lifestyle.jpg" },
+            { label: "Restaurants",    img: "/images/story/restaurants.jpg" },
+            { label: "Aesthetics",     img: "/images/story/aesthetics.jpg" },
+            { label: "Food & Drinks",  img: "/images/story/food.jpg" },
+          ],
+          [
+            { label: "Beauty",           img: "/images/story/beauty.jpg" },
+            { label: "Active & Outdoor", img: "/images/story/outdoor.jpg" },
+            { label: "Travel",           img: "/images/story/travel.jpg" },
+            { label: "Nightlife",        img: "/images/story/nightlife.jpg" },
+          ],
+          [
+            { label: "Fitness",            img: "/images/story/fitness.jpg" },
+            { label: "Wellness & Pilates", img: "/images/story/wellnes.jpeg" },
+            { label: "Jewellery",          img: "/images/story/jewellry.jpg" },
+            { label: "Events & Luxury",    img: "/images/story/events.jpg" },
+          ],
+        ].map((row, rowIndex) => (
+          <div
+            key={rowIndex}
+            className="flex flex-row items-center justify-center gap-2 w-full py-1 md:py-2"
+
+          >
+            {row.map((item) => (
+              <div key={item.label} className="flex flex-row items-center gap-2">
+                <span
+                  style={{ fontFamily: "var(--font-instrument-serif)", fontStyle: "italic", fontWeight: 400 }}
+                  className="text-[clamp(1rem,2.5vw,3rem)] text-white whitespace-nowrap"
+                >
+                  {item.label}
+                </span>
+                <div className="relative flex-shrink-0 overflow-hidden" style={{ height: '2.5vw', width: 'calc(2.5vw * 2 / 3)' }}>
+                  <Image
+                    src={item.img}
+                    alt={item.label}
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </section>
+
       {/* Middle Content Container */}
       <div className="flex flex-col items-center px-4 md:px-20 gap-2.5 relative mx-auto">
         {/* See More */}
@@ -193,24 +280,10 @@ export default function HomeClient({ content }: HomeClientProps) {
           </Link>
         </div>
 
-        {/* Paragraph Section */}
-        <section className="flex flex-col justify-center items-center py-12 md:py-[250px] gap-8 md:gap-12 w-full max-w-[792px] mb-8 md:mb-16 px-4">
-          <h2 className="text-3xl md:text-5xl font-semibold text-center leading-tight tracking-tight">
-            {content.storySection.headline}
-          </h2>
-
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 w-full">
-            {content.storySection.buttons.map((button) => (
-              <Button key={button.label} href={button.href} variant={button.variant}>
-                {button.label}
-              </Button>
-            ))}
-          </div>
-        </section>
       </div>
 
       {/* Services Section */}
-      <section className="flex flex-col md:flex-row items-center w-full max-w-[1536px] mb-16 mx-auto px-4">
+      <section id="services" className="flex flex-col md:flex-row items-start gap-20 w-full max-w-[1536px] mb-16 mx-auto px-20 py-20">
         {services.map((service) => (
           <ServiceCard
             key={service.id}
@@ -220,8 +293,54 @@ export default function HomeClient({ content }: HomeClientProps) {
             description={service.description}
             gradientOpacity={service.gradientOpacity}
             href={service.href}
+            videoSrc={service.videoSrc}
           />
         ))}
+      </section>
+
+      {/* Packages Banner */}
+      <section className="relative w-full h-[420px] md:h-[500px] overflow-hidden mb-16">
+        {/* Full-width background image */}
+        <Image
+          src="/images/backgrounds/packages.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+          aria-hidden="true"
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/60" />
+        {/* Centred content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 px-6 md:px-20 text-center">
+          <h2
+            className="text-3xl md:text-5xl tracking-tight uppercase"
+            style={{ fontFamily: "var(--font-instrument-serif)", fontWeight: 400, color: "#FCFFA2" }}
+          >
+            COMPARE OUR PACKAGES
+          </h2>
+          <p className="text-xl md:text-2xl font-semibold tracking-tight text-white/80 uppercase max-w-[640px] leading-snug">
+            FROM CONTENT CREATION TO FULL CREATIVE DIRECTION, FIND THE PACKAGE THAT&apos;S RIGHT FOR YOUR BRAND
+          </p>
+          <div className="flex flex-row items-center gap-5 mt-2">
+            <Button href="#services" variant="secondary">SERVICES</Button>
+            <Button
+              href="https://wa.me/44XXXXXXXXXX"
+              variant="primary"
+              openInNewTab
+              icon={
+                <Image
+                  src="/icons/whatsapp.svg"
+                  alt="WhatsApp"
+                  width={20}
+                  height={20}
+                />
+              }
+            >
+              WHATSAPP US!
+            </Button>
+          </div>
+        </div>
       </section>
 
       {/* Lower Content Container */}
@@ -313,6 +432,7 @@ export default function HomeClient({ content }: HomeClientProps) {
                 key={button.label}
                 href={button.href}
                 variant={button.variant}
+                openInNewTab={button.openInNewTab}
                 icon={
                   button.iconSrc ? (
                     <Image
