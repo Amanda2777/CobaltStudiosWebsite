@@ -323,9 +323,9 @@ export default function HomeClient({ content }: HomeClientProps) {
             FROM CONTENT CREATION TO FULL CREATIVE DIRECTION, FIND THE PACKAGE THAT&apos;S RIGHT FOR YOUR BRAND
           </p>
           <div className="flex flex-row items-center gap-5 mt-2">
-            <Button href="#services" variant="secondary">SERVICES</Button>
+            <Button href="/services" variant="secondary">SERVICES</Button>
             <Button
-              href="https://wa.me/44XXXXXXXXXX"
+              href="https://wa.me/36204189003"
               variant="primary"
               openInNewTab
               icon={
