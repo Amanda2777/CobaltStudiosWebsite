@@ -21,40 +21,40 @@ const services = [
   {
     id: 1,
     title: "CREATIVE PRODUCTION",
-    price: "starting at £1,500",
+    price: "starting at £2,000",
     imageSrc: "/images/services/creative.png",
     imageAlt: "Creative Production",
     videoSrc: "https://pub-1ec42cf347284532910f7cc6a8fb640d.r2.dev/creative.mp4",
     paragraphs: [
-      "One shoot. One team. Everything handled.",
-      "We come to you, learn your brand, and build a full day of content around it — scripted, directed, and edited entirely in house. You walk away with a library of films, reels, and stills that actually look like the business you've built. No briefing multiple agencies, no losing the vision in translation. Just content that's ready to go.",
+      "One shoot day with us covers your content for the month ahead.",
+      "You walk away with a full library - short form videos, reels, stills, and behind the scenes footage, all scripted, shot, and edited by us in house. Every deliverable is ready to post, sized for the platforms you are on, and built around your brand from the ground up.",
     ],
     note: "What's included varies by brand — get in touch and we'll put together exactly what you need.",
   },
   {
     id: 2,
     title: "BRANDING & STRATEGY",
-    price: "starting at £8,000",
+    price: "starting at £1,000",
     imageSrc: "/images/services/branding.png",
     imageAlt: "Branding & Strategy",
     videoSrc: "https://pub-1ec42cf347284532910f7cc6a8fb640d.r2.dev/Ballers%201.mp4",
     paragraphs: [
       "Your brand should be impossible to mistake for anyone else's.",
       "We build the foundations of your brand — identity, strategy, visual direction, and the guidelines to carry it forward. Whether you're starting from scratch or need a rebrand that finally feels right, we work with you until it's exactly what it should be.",
-      "Every project is scoped to what you actually need. No bloated deliverables, no generic templates.",
+      "Every project is scoped to what you actually need, built from scratch and delivered to fit.",
     ],
     note: null,
   },
   {
     id: 3,
     title: "SOCIAL MEDIA MANAGEMENT",
-    price: "starting at £1,200/mo",
+    price: "starting at £1,000/mo",
     imageSrc: "/images/services/social.png",
     imageAlt: "Social Media Management",
     videoSrc: "https://pub-1ec42cf347284532910f7cc6a8fb640d.r2.dev/Pianillo%204-captioned.mp4",
     paragraphs: [
-      "Consistent, intentional content — every month, without you having to think about it.",
-      "We handle the strategy, the shoot, the edit, and the scheduling. Your channels stay active, on-brand, and built around what your audience actually wants to see. You stay focused on running your business.",
+      "Your channels handled every month while you focus on everything else.",
+      "We take care of the strategy, captions, scheduling, comments, and DMs so your brand stays consistent and active without it becoming another thing on your list.",
       "Retainers are tailored to your posting frequency and content needs. Reach out and we'll build a plan around you.",
     ],
     note: null,
@@ -82,8 +82,7 @@ export default function Services() {
           </span>
         </h1>
         <p className="text-[1.875rem] tracking-tight leading-[1.1] text-[#B3B3B3] max-w-[560px]">
-          We tailor our packages based on your needs. Every company is unique in
-          it&apos;s requirements, availability and timeline.
+          Not sure what you need yet? That is what we are here for. Every package is tailored around your brand, your goals, and your budget.
         </p>
       </section>
 
