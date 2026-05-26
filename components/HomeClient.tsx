@@ -235,7 +235,7 @@ export default function HomeClient({ content }: HomeClientProps) {
           [
             { label: "Fitness",            img: "/images/story/fitness.jpg" },
             { label: "Wellness & Pilates", img: "/images/story/wellnes.jpeg" },
-            { label: "Jewellery",          img: "/images/story/jewellry.jpg" },
+            { label: "Jewellery",          img: "/images/story/jewllery.jpg" },
             { label: "Events & Luxury",    img: "/images/story/events.jpg" },
           ],
         ].map((row, rowIndex) => (
