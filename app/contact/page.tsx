@@ -58,12 +58,22 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <Link
-                  href="/contact/form"
-                  className="inline-flex items-center justify-center rounded-lg bg-white text-[#050505] px-4 py-3 text-base md:text-xl font-semibold transition-opacity hover:opacity-80"
-                >
-                  OPEN ENQUIRY FORM
-                </Link>
+                <div className="flex flex-row gap-4 flex-wrap">
+                  <Link
+                    href="/contact/form"
+                    className="inline-flex items-center justify-center rounded-lg bg-white text-[#050505] px-4 py-3 text-base md:text-xl font-semibold transition-opacity hover:opacity-80"
+                  >
+                    OPEN ENQUIRY FORM
+                  </Link>
+                  <Link
+                    href="https://calendly.com/nikita-cobaltmade/30min"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center rounded-lg bg-transparent text-white border border-white px-4 py-3 text-base md:text-xl font-semibold transition-opacity hover:opacity-80"
+                  >
+                    CHAT WITH US TODAY
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
