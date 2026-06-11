@@ -66,7 +66,7 @@ export default function Contact() {
                     OPEN ENQUIRY FORM
                   </Link>
                   <Link
-                    href="https://calendly.com/nikita-cobaltmade/30min"
+                    href="https://calendly.com/nikita-cobaltmade/15?month=2026-06"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center justify-center rounded-lg bg-transparent text-white border border-white px-4 py-3 text-base md:text-xl font-semibold transition-opacity hover:opacity-80"
