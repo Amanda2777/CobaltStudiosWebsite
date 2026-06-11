@@ -69,10 +69,10 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-start gap-1.5 md:gap-2.5 pb-1 md:pb-0">
-            <Link href="#" className="text-[18px] leading-none md:text-base whitespace-nowrap">
+            <Link href="/privacy" className="text-[18px] leading-none md:text-base whitespace-nowrap">
               Privacy Policy
             </Link>
-            <Link href="#" className="text-[18px] leading-none md:text-base whitespace-nowrap">
+            <Link href="/terms" className="text-[18px] leading-none md:text-base whitespace-nowrap">
               Terms and conditions
             </Link>
           </div>
