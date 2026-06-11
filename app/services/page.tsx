@@ -34,7 +34,7 @@ const services = [
   {
     id: 2,
     title: "BRANDING & STRATEGY",
-    price: "starting at £1,500",
+    price: "starting at £1,000",
     imageSrc: "/images/services/branding.png",
     imageAlt: "Branding & Strategy",
     videoSrc: "https://pub-1ec42cf347284532910f7cc6a8fb640d.r2.dev/Ballers%201.mp4",

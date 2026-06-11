@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,6 +8,10 @@ import CaseStudyCard from "@/components/CaseStudyCard";
 import ServiceCard from "@/components/ServiceCard";
 import FAQItem from "@/components/FAQItem";
 import Button from "@/components/Button";
+import ScatterGallery from "@/components/ScatterGallery";
+import PackagesPolaroid from "@/components/PackagesPolaroid";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { HomeContent } from "@/lib/home";
 
 interface HomeClientProps {
@@ -16,10 +20,19 @@ interface HomeClientProps {
 
 export default function HomeClient({ content }: HomeClientProps) {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [scrollCaseStudy, setScrollCaseStudy] = useState<number | null>(null);
 
   // Single streamed video source + background mirror canvas.
   const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const bgCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const heroWrapperRef = useRef<HTMLDivElement>(null);
+  const cardRowRef = useRef<HTMLDivElement>(null);
+  const categoryRowsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const serviceCardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const faqItemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const storySectionRef = useRef<HTMLElement>(null);
+  const industrySectionRef = useRef<HTMLElement>(null);
+  const servicesSectionRef = useRef<HTMLElement>(null);
 
   const caseStudies = content.caseStudies;
   const services = content.services;
@@ -27,10 +40,21 @@ export default function HomeClient({ content }: HomeClientProps) {
 
 
   const activeCaseStudyNumber =
-    hoveredCard ?? content.hero.defaultActiveCaseStudyNumber;
+    scrollCaseStudy ?? hoveredCard ?? content.hero.defaultActiveCaseStudyNumber;
   const activeCaseStudy =
     caseStudies.find((study) => study.number === activeCaseStudyNumber) ??
     caseStudies[0];
+
+  const heroSuffixes = [
+    content.hero.titleSuffix, // "COBALT"
+    "VISIONARIES",
+    "CREATORS",
+    "BUILDERS",
+  ];
+  const activeIdx = caseStudies.findIndex((s) => s.number === activeCaseStudyNumber);
+  const activeSuffix = heroSuffixes[activeIdx] ?? content.hero.titleSuffix;
+
+  const CASE_STUDY_YEARS: Record<number, number> = { 1: 2026, 2: 2025, 3: 2025, 4: 2026 };
 
   useEffect(() => {
     const heroVideo = heroVideoRef.current;
@@ -117,6 +141,158 @@ export default function HomeClient({ content }: HomeClientProps) {
     };
   }, [activeCaseStudyNumber]);
 
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const wrapper = heroWrapperRef.current;
+    const row = cardRowRef.current;
+    if (!wrapper || !row) return;
+
+    let prevIdx = -1;
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: wrapper,
+          start: "top top",
+          end: "+=5000",
+          pin: true,
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+          refreshPriority: 1,
+          onUpdate(self) {
+            const idx = Math.min(Math.floor(self.progress * 4), 3);
+            if (idx !== prevIdx) {
+              prevIdx = idx;
+              setScrollCaseStudy(caseStudies[idx].number);
+            }
+          },
+          onLeaveBack() {
+            prevIdx = -1;
+            setScrollCaseStudy(null);
+          },
+        },
+      });
+
+      // Slide the card row left as user scrolls through the 4 videos
+      tl.to(row, { x: -300, ease: "none", duration: 1 });
+
+      return () => {
+        tl.scrollTrigger?.kill();
+        tl.kill();
+      };
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      mm.revert();
+    };
+  }, [caseStudies]);
+
+  // Fire after all child components (including ScatterGallery) have mounted and
+  // set up their own ScrollTriggers, so every trigger recalculates with the
+  // hero pin spacer already in the DOM.
+  useEffect(() => {
+    const id = setTimeout(() => ScrollTrigger.refresh(), 100);
+    return () => clearTimeout(id);
+  }, []);
+
+  useEffect(() => {
+    const rows = categoryRowsRef.current.filter(Boolean) as HTMLDivElement[];
+    if (!rows.length) return;
+
+    const ctx = gsap.context(() => {
+      rows.forEach((row) => {
+        gsap.set(row, { opacity: 0, y: 36 });
+        gsap.to(row, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: row,
+            start: "top 88%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    const cards = serviceCardsRef.current.filter(Boolean) as HTMLDivElement[];
+    if (!cards.length) return;
+
+    const ctx = gsap.context(() => {
+      cards.forEach((card, i) => {
+        gsap.set(card, { opacity: 0, y: 40 });
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          delay: i * 0.12,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 88%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    const items = faqItemsRef.current.filter(Boolean) as HTMLDivElement[];
+    if (!items.length) return;
+
+    const ctx = gsap.context(() => {
+      items.forEach((item) => {
+        gsap.set(item, { opacity: 0, y: 30 });
+        gsap.to(item, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: item,
+            start: "top 88%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    const triggers = [
+      { ref: storySectionRef,   extra: 800 },
+      { ref: industrySectionRef, extra: 800 },
+      { ref: servicesSectionRef, extra: 800 },
+    ]
+      .map(({ ref, extra }) => {
+        const el = ref.current;
+        if (!el) return null;
+        return ScrollTrigger.create({
+          trigger: el,
+          start: "top top",
+          end: `+=${extra}`,
+          pin: true,
+          pinSpacing: true,
+        });
+      })
+      .filter(Boolean) as ScrollTrigger[];
+
+    return () => triggers.forEach((t) => t.kill());
+  }, []);
+
   return (
     <div className="bg-[#050505] text-white">
       {/* Header Container */}
@@ -125,44 +301,62 @@ export default function HomeClient({ content }: HomeClientProps) {
         <Navigation transparent />
       </div>
 
+      {/* Hero + Cards — pinned for scroll-driven video trigger */}
+      <div ref={heroWrapperRef}>
+
       {/* Hero Content - Full Width */}
-      <section className="flex flex-row justify-center items-center pt-20 pb-10 md:pt-24 md:pb-16 gap-2 md:gap-4 isolate w-full min-h-[573px] relative overflow-hidden">
-        {/* Background video when hovering - dimmed with animation - Full Width */}
-        <div className="absolute inset-0 left-0 right-0 z-0 transition-opacity duration-500">
-          <div className="absolute inset-0 opacity-20 transition-opacity duration-500">
-            <canvas
-              ref={bgCanvasRef}
-              className="w-full h-full"
-              aria-hidden="true"
-            />
+      <section className="w-full relative isolate overflow-hidden" style={{ height: "calc(100vh - 9rem)" }}>
+        {/* Blurred background canvas */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 opacity-20">
+            <canvas ref={bgCanvasRef} className="w-full h-full" aria-hidden="true" />
           </div>
         </div>
 
-        <h1 className="text-sm sm:text-base md:text-5xl font-bold md:tracking-tight whitespace-nowrap px-3 md:px-0 relative z-10">
-          {content.hero.titlePrefix}
-        </h1>
+        {/* Symmetric 3-col grid: equal outer columns keep card perfectly centred
+            regardless of how wide the suffix text is */}
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center h-full w-full">
 
-        {/* Hero Video/Image - Multiple with opacity transitions */}
-        <div className="w-56 sm:w-60 h-90 md:w-96 md:h-138 relative overflow-hidden z-10">
-          <video
-            key={`hero-${activeCaseStudy.number}`}
-            ref={heroVideoRef}
-            src={activeCaseStudy.videoSrc}
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-          />
+          <h1 className="text-sm sm:text-base md:text-5xl font-bold md:tracking-tight whitespace-nowrap text-right pr-3 md:pr-6 relative z-10">
+            {content.hero.titlePrefix}
+          </h1>
+
+          {/* Hero video card — fills full section height, fixed width */}
+          <div className="h-full w-[180px] sm:w-[220px] md:w-96 relative overflow-hidden z-10">
+            <video
+              key={`hero-${activeCaseStudy.number}`}
+              ref={heroVideoRef}
+              src={activeCaseStudy.videoSrc}
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+            />
+            {/* Text overlay — updates with each video */}
+            <div key={`text-${activeCaseStudy.number}`} className="absolute inset-0 flex flex-col justify-between p-3 md:p-4 pointer-events-none animate-fade-in">
+              <div className="flex justify-between items-start pt-16 md:pt-20">
+                <span className="text-[10px] md:text-xs text-white/70 tracking-wide">{activeCaseStudy.clientName}</span>
+                <span className="text-[10px] md:text-xs text-white/70 tracking-wide">&ldquo;{activeCaseStudy.projectName}&rdquo;</span>
+              </div>
+              <div className="flex justify-center">
+                <span className="text-[10px] md:text-xs text-white/70 tracking-wide">{CASE_STUDY_YEARS[activeCaseStudy.number]}</span>
+              </div>
+            </div>
+          </div>
+
+          <h1
+            key={activeSuffix}
+            className="text-sm sm:text-base md:text-5xl font-bold md:tracking-tight whitespace-nowrap text-left pl-3 md:pl-6 relative z-10"
+          >
+            {activeSuffix}
+          </h1>
+
         </div>
-
-        <h1 className="text-sm sm:text-base md:text-5xl font-bold md:tracking-tight whitespace-nowrap px-3 md:px-0 relative z-10">
-          {content.hero.titleSuffix}
-        </h1>
       </section>
 
-      {/* Featured Case Studies */}
-      <section className="grid grid-cols-2 md:flex md:flex-row md:justify-between items-center gap-4 md:gap-7 w-full max-w-[1536px] pt-4 md:pt-6 mb-16 mx-auto px-4">
+      {/* Featured Case Studies — sits below hero; together they fill one viewport */}
+      <div ref={cardRowRef} className="grid grid-cols-2 md:flex md:flex-row md:justify-between items-center gap-4 md:gap-7 w-full max-w-[1536px] mx-auto px-4 py-3 mb-16">
         {caseStudies.map((study) => (
           <CaseStudyCard
             key={study.number}
@@ -172,16 +366,21 @@ export default function HomeClient({ content }: HomeClientProps) {
             imageSrc={study.imageSrc}
             imageAlt={study.imageAlt}
             href={study.href}
-            isHovered={hoveredCard === study.number}
-            isDimmed={hoveredCard !== null && hoveredCard !== study.number}
+            isHovered={scrollCaseStudy === study.number || hoveredCard === study.number}
+            isDimmed={
+              (scrollCaseStudy !== null && scrollCaseStudy !== study.number) ||
+              (scrollCaseStudy === null && hoveredCard !== null && hoveredCard !== study.number)
+            }
             onHoverStart={() => setHoveredCard(study.number)}
             onHoverEnd={() => setHoveredCard(null)}
           />
         ))}
-      </section>
+      </div>
+
+      </div>{/* end heroWrapperRef */}
 
       {/* Story Section */}
-      <section className="w-full max-w-[1536px] mx-auto px-4 md:px-8 py-16 md:py-24">
+      <section ref={storySectionRef} className="w-full max-w-[1536px] mx-auto px-4 md:px-8 py-16 md:py-24 relative z-10 bg-[#050505]">
         <div className="mx-auto w-full max-w-[1142px]">
           {/* Two-column text row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 mb-10 md:mb-12">
@@ -217,8 +416,10 @@ export default function HomeClient({ content }: HomeClientProps) {
         </div>
       </section>
 
+      <ScatterGallery />
+
       {/* Industry Categories */}
-      <section className="w-full max-w-[1536px] mx-auto px-4 md:px-8 py-8 md:py-12">
+      <section ref={industrySectionRef} className="w-full max-w-[1536px] mx-auto px-4 md:px-8 py-8 md:py-12">
         {[
           [
             { label: "Lifestyle",      img: "/images/story/lifestyle.jpg" },
@@ -241,8 +442,8 @@ export default function HomeClient({ content }: HomeClientProps) {
         ].map((row, rowIndex) => (
           <div
             key={rowIndex}
+            ref={(el) => { categoryRowsRef.current[rowIndex] = el; }}
             className="flex flex-row items-center justify-center gap-2 w-full py-1 md:py-2"
-
           >
             {row.map((item) => (
               <div key={item.label} className="flex flex-row items-center gap-2">
@@ -283,65 +484,24 @@ export default function HomeClient({ content }: HomeClientProps) {
       </div>
 
       {/* Services Section */}
-      <section id="services" className="flex flex-col md:flex-row items-start gap-20 w-full max-w-[1536px] mb-16 mx-auto px-20 py-20">
-        {services.map((service) => (
-          <ServiceCard
-            key={service.id}
-            title={service.title}
-            imageSrc={service.imageSrc}
-            imageAlt={service.imageAlt}
-            description={service.description}
-            gradientOpacity={service.gradientOpacity}
-            href={service.href}
-            videoSrc={service.videoSrc}
-          />
+      <section ref={servicesSectionRef} id="services" className="flex flex-col md:flex-row items-start gap-20 w-full max-w-[1536px] mb-16 mx-auto px-20 py-20">
+        {services.map((service, i) => (
+          <div key={service.id} ref={(el) => { serviceCardsRef.current[i] = el; }}>
+            <ServiceCard
+              title={service.title}
+              imageSrc={service.imageSrc}
+              imageAlt={service.imageAlt}
+              description={service.description}
+              gradientOpacity={service.gradientOpacity}
+              href={service.href}
+              videoSrc={service.videoSrc}
+            />
+          </div>
         ))}
       </section>
 
       {/* Packages Banner */}
-      <section className="relative w-full h-[420px] md:h-[500px] overflow-hidden mb-16">
-        {/* Full-width background image */}
-        <Image
-          src="/images/backgrounds/packages.png"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover"
-          aria-hidden="true"
-        />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/60" />
-        {/* Centred content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 px-6 md:px-20 text-center">
-          <h2
-            className="text-3xl md:text-5xl tracking-tight uppercase"
-            style={{ fontFamily: "var(--font-instrument-serif)", fontWeight: 400, color: "#FCFFA2" }}
-          >
-            COMPARE OUR PACKAGES
-          </h2>
-          <p className="text-xl md:text-2xl font-semibold tracking-tight text-white/80 uppercase max-w-[640px] leading-snug">
-            FROM CONTENT CREATION TO FULL CREATIVE DIRECTION, FIND THE PACKAGE THAT&apos;S RIGHT FOR YOUR BRAND
-          </p>
-          <div className="flex flex-row items-center gap-5 mt-2">
-            <Button href="/services" variant="secondary">SERVICES</Button>
-            <Button
-              href="https://wa.me/36204189003"
-              variant="primary"
-              openInNewTab
-              icon={
-                <Image
-                  src="/icons/whatsapp.svg"
-                  alt="WhatsApp"
-                  width={20}
-                  height={20}
-                />
-              }
-            >
-              WHATSAPP US!
-            </Button>
-          </div>
-        </div>
-      </section>
+      <PackagesPolaroid />
 
       {/* Lower Content Container */}
       <div className="flex flex-col items-center px-4 md:px-20 gap-2.5 relative mx-auto">
@@ -383,13 +543,14 @@ export default function HomeClient({ content }: HomeClientProps) {
           </h2>
 
           <div className="flex flex-col justify-center items-start gap-15 w-full">
-            {faqs.map((faq) => (
-              <FAQItem
-                key={faq.id}
-                question={faq.question}
-                answer={faq.answer}
-                defaultOpen={faq.defaultOpen}
-              />
+            {faqs.map((faq, i) => (
+              <div key={faq.id} ref={(el) => { faqItemsRef.current[i] = el; }} className="w-full">
+                <FAQItem
+                  question={faq.question}
+                  answer={faq.answer}
+                  defaultOpen={faq.defaultOpen}
+                />
+              </div>
             ))}
           </div>
         </section>
